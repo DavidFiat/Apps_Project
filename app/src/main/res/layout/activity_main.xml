@@ -23,6 +23,7 @@
         style="@style/tituloApp"
         android:layout_width="205dp"
         android:layout_height="163dp"
+        android:background="#00000000"
         android:text="Style Reserve"
         android:textAlignment="center"
         android:textSize="60sp"

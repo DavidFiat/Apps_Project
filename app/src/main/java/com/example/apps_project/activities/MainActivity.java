@@ -29,15 +29,15 @@ public class MainActivity extends AppCompatActivity {
             FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnCompleteListener(
                     task ->{
                         loadedUser = task.getResult().toObject(User.class);
+                        switch (loadedUser.getRol()){
+                            case "client":
+                                Intent intent = new Intent(this, ClientActivity.class);
+                                intent.putExtra("client", loadedUser);
+                                startActivity(intent);
+                                break;
+                        }
                     }
             );
-            switch (loadedUser.getRol()){
-                case "client":
-                    Intent intent = new Intent(this, ClientActivity.class);
-                    intent.putExtra("client", loadedUser);
-                    startActivity(intent);
-                    break;
-            }
         }
     }
 }

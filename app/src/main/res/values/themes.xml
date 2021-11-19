@@ -12,10 +12,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:textColor">@color/black</item>
+        <item name="android:background">@color/fondoPantalla</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="tituloApp" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/lobster</item>
         <item name="android:textColor">@color/colorTitulo</item>
+    </style>
+    <style name="botones" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/colorTitulo</item>
+        <item name="android:textColor">@color/fondoPantalla</item>
     </style>
 </resources>
