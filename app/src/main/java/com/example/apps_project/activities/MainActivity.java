@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             );
             switch (loadedUser.getRol()){
                 case "client":
-                    Intent intent = new Intent(this, RolActivity.class);
+                    Intent intent = new Intent(this, ClientActivity.class);
                     intent.putExtra("client", loadedUser);
                     startActivity(intent);
                     break;
