@@ -10,6 +10,8 @@
         <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_register_client.xml" value="0.22" />
         <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_rol.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_login_client.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_rol.xml" value="0.11388888888888889" />
       </map>
     </option>
   </component>

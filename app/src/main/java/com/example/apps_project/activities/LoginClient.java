@@ -1,5 +1,6 @@
 package com.example.apps_project.activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,15 +13,32 @@ import android.widget.Toast;
 
 import com.example.apps_project.R;
 import com.example.apps_project.model.Client;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Arrays;
 
 public class LoginClient extends AppCompatActivity {
 
     private TextView registerTV;
     private EditText emailET, passwordET;
     private Button loginBtn;
+
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+    private FirebaseAuth mAut;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +58,56 @@ public class LoginClient extends AppCompatActivity {
         );
 
         loginBtn.setOnClickListener(this::login);
+
+        mAut = FirebaseAuth.getInstance();
+        callbackManager=CallbackManager.Factory.create();
+        loginButton = findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email");
+        loginButton.setOnClickListener(this::loginFB);
+
+    }
+
+    private void loginFB(View view) {
+        //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+              facebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        callbackManager.onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
+
+    private void facebookAccessToken(AccessToken token) {
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAut.signInWithCredential(credential).addOnSuccessListener(
+                task->{
+                    Toast.makeText(this,"Ingreso Correctamente",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, ClientActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+        ).addOnFailureListener(
+                error->{
+                    Toast.makeText(this,error.getMessage(),Toast.LENGTH_LONG).show();
+                }
+        );
     }
 
     private void login(View view) {
@@ -54,6 +122,7 @@ public class LoginClient extends AppCompatActivity {
                                 //Le damos acceso
                                 Intent intent = new Intent(this, ClientActivity.class);
                                 startActivity(intent);
+
 
                             }else{
                                 Toast.makeText(this, "Su email no está verificado", Toast.LENGTH_LONG).show();
