@@ -25,7 +25,7 @@ public class RegisterClient extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_client);
 
-        nameET = findViewById(R.id.nameET);
+        nameET = findViewById(R.id.nameTV);
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
         repasswordET = findViewById(R.id.repasswordET);
