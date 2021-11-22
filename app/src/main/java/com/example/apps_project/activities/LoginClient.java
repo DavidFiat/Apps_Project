@@ -13,10 +13,12 @@ import android.widget.Toast;
 
 import com.example.apps_project.R;
 import com.example.apps_project.model.Client;
+import com.example.apps_project.model.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.LoginStatusCallback;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -36,7 +38,6 @@ public class LoginClient extends AppCompatActivity {
 
     private LoginButton loginButton;
     private CallbackManager callbackManager;
-    private FirebaseAuth mAut;
 
 
 
@@ -59,11 +60,11 @@ public class LoginClient extends AppCompatActivity {
 
         loginBtn.setOnClickListener(this::login);
 
-        mAut = FirebaseAuth.getInstance();
         callbackManager=CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.setOnClickListener(this::loginFB);
+
 
     }
 
@@ -85,6 +86,13 @@ public class LoginClient extends AppCompatActivity {
 
             }
         });
+
+
+
+
+
+
+
     }
 
     @Override
@@ -96,8 +104,9 @@ public class LoginClient extends AppCompatActivity {
 
     private void facebookAccessToken(AccessToken token) {
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAut.signInWithCredential(credential).addOnSuccessListener(
+        FirebaseAuth.getInstance().signInWithCredential(credential).addOnSuccessListener(
                 task->{
+                    addClientInFireBase();
                     Toast.makeText(this,"Ingreso Correctamente",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, ClientActivity.class);
                     startActivity(intent);
@@ -107,6 +116,18 @@ public class LoginClient extends AppCompatActivity {
                     Toast.makeText(this,error.getMessage(),Toast.LENGTH_LONG).show();
                 }
         );
+    }
+
+    private void addClientInFireBase() {
+
+        FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
+        User user = new User(fireUser.getUid(),"client");
+        Client client = new Client(fireUser.getUid(),fireUser.getDisplayName(),fireUser.getEmail());
+        FirebaseFirestore.getInstance().collection("users").document(user.getId()).set(user);
+        FirebaseFirestore.getInstance().collection("clients").document(user.getId()).set(client);
+
+
+
     }
 
     private void login(View view) {
