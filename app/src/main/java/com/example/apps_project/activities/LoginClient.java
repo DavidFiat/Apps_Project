@@ -62,7 +62,7 @@ public class LoginClient extends AppCompatActivity {
         mAut = FirebaseAuth.getInstance();
         callbackManager=CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email");
+        loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.setOnClickListener(this::loginFB);
 
     }
@@ -101,7 +101,6 @@ public class LoginClient extends AppCompatActivity {
                     Toast.makeText(this,"Ingreso Correctamente",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, ClientActivity.class);
                     startActivity(intent);
-                    finish();
                 }
         ).addOnFailureListener(
                 error->{
