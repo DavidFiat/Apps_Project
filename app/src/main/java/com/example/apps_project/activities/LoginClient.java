@@ -62,28 +62,29 @@ public class LoginClient extends AppCompatActivity {
 
         callbackManager=CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("email"));
+       // loginButton.setReadPermissions("email"));
         loginButton.setOnClickListener(this::loginFB);
 
 
     }
 
     private void loginFB(View view) {
-        //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
+        Toast.makeText(view.getContext(),"entro",Toast.LENGTH_LONG).show();
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(view.getContext(),"succes",Toast.LENGTH_LONG).show();
               facebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
-
             }
 
             @Override
             public void onError(FacebookException error) {
-
+                Toast.makeText(view.getContext(),error.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -99,10 +100,12 @@ public class LoginClient extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         callbackManager.onActivityResult(requestCode,resultCode,data);
         super.onActivityResult(requestCode, resultCode, data);
-
+        Toast.makeText(this, "activityResult", Toast.LENGTH_LONG).show();
     }
 
     private void facebookAccessToken(AccessToken token) {
+        Toast.makeText(this, "facebookAccessToken", Toast.LENGTH_LONG).show();
+
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnSuccessListener(
                 task->{

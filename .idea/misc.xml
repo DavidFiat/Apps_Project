@@ -3,20 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/drawable/barbershops_container.xml" value="0.13703703703703704" />
         <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/drawable/edittext.xml" value="0.14629629629629629" />
         <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/font/lobster.xml" value="0.12314814814814815" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_client.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_client.xml" value="0.1408514492753623" />
         <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_login_client.xml" value="0.22" />
         <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_register_client.xml" value="0.22" />
         <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_rol.xml" value="0.22" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/barbershop_row.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/fragment_barbershops.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/fragment_reserve.xml" value="0.12590579710144928" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/menu/home_menu.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/layout/activity_client.xml" value="0.2736625514403292" />
         <entry key="app/src/main/res/layout/activity_login_client.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_rol.xml" value="0.11388888888888889" />
+        <entry key="app/src/main/res/layout/barbershop_row.xml" value="0.24728260869565216" />
+        <entry key="app/src/main/res/layout/fragment_barbershops.xml" value="0.24728260869565216" />
       </map>
     </option>
   </component>
