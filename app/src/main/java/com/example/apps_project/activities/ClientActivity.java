@@ -35,6 +35,7 @@ public class ClientActivity extends AppCompatActivity {
         profileFragment = ProfileFragment.newInstance();
         reserveFragment = ReserveFragment.newInstance();
 
+
         showFragment(barbershopsFragment);
 
         navigator.setOnItemSelectedListener(
@@ -57,10 +58,12 @@ public class ClientActivity extends AppCompatActivity {
         );
     }
 
+
     public void showFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragmentContainer, fragment);
         transaction.commit();
     }
+
 }

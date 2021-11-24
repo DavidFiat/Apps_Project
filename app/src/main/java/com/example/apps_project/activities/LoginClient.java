@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apps_project.R;
+import com.example.apps_project.fragments.ProfileFragment;
 import com.example.apps_project.model.Client;
 import com.example.apps_project.model.User;
 import com.facebook.AccessToken;
@@ -30,7 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Arrays;
 
-public class LoginClient extends AppCompatActivity {
+public class LoginClient extends AppCompatActivity  {
 
     private TextView registerTV;
     private EditText emailET, passwordET;
@@ -51,6 +52,7 @@ public class LoginClient extends AppCompatActivity {
         passwordET = findViewById(R.id.passwordET);
         loginBtn = findViewById(R.id.loginBtn);
 
+
         registerTV.setOnClickListener(
                 (v)->{
                     Intent intent = new Intent(this, RegisterClient.class);
@@ -64,6 +66,8 @@ public class LoginClient extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         //loginButton.setReadPermissions("email");
         loginButton.setOnClickListener(this::loginFB);
+
+
 
 
     }
@@ -97,12 +101,9 @@ public class LoginClient extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         callbackManager.onActivityResult(requestCode,resultCode,data);
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(this, "activityResult", Toast.LENGTH_LONG).show();
     }
 
     private void facebookAccessToken(AccessToken token) {
-        Toast.makeText(this, "facebookAccessToken", Toast.LENGTH_LONG).show();
-
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnSuccessListener(
                 task->{
@@ -152,4 +153,7 @@ public class LoginClient extends AppCompatActivity {
                     error->Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show()
                 );
     }
+
+
+
 }
