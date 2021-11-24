@@ -62,19 +62,16 @@ public class LoginClient extends AppCompatActivity {
 
         callbackManager=CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button);
-       // loginButton.setReadPermissions("email"));
+        //loginButton.setReadPermissions("email");
         loginButton.setOnClickListener(this::loginFB);
 
 
     }
 
     private void loginFB(View view) {
-        Toast.makeText(view.getContext(),"entro",Toast.LENGTH_LONG).show();
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(view.getContext(),"succes",Toast.LENGTH_LONG).show();
               facebookAccessToken(loginResult.getAccessToken());
             }
 
