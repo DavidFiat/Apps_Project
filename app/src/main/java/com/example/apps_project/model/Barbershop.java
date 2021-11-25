@@ -1,5 +1,7 @@
 package com.example.apps_project.model;
 
+import android.util.Log;
+
 public class Barbershop {
 
     private String id;

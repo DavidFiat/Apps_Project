@@ -64,7 +64,7 @@ public class LoginClient extends AppCompatActivity  {
 
         callbackManager=CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button);
-        //loginButton.setReadPermissions("email");
+        loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.setOnClickListener(this::loginFB);
 
 
@@ -89,12 +89,6 @@ public class LoginClient extends AppCompatActivity  {
             }
         });
 
-
-
-
-
-
-
     }
 
     @Override
@@ -104,11 +98,10 @@ public class LoginClient extends AppCompatActivity  {
     }
 
     private void facebookAccessToken(AccessToken token) {
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        AuthCredential credential = FacebookAuthProvider.getCredential(AccessToken.getCurrentAccessToken().getToken());
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnSuccessListener(
                 task->{
                     addClientInFireBase();
-                    Toast.makeText(this,"Ingreso Correctamente",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, ClientActivity.class);
                     startActivity(intent);
                 }
@@ -126,9 +119,6 @@ public class LoginClient extends AppCompatActivity  {
         Client client = new Client(fireUser.getUid(),fireUser.getDisplayName(),fireUser.getEmail());
         FirebaseFirestore.getInstance().collection("users").document(user.getId()).set(user);
         FirebaseFirestore.getInstance().collection("clients").document(user.getId()).set(client);
-
-
-
     }
 
     private void login(View view) {

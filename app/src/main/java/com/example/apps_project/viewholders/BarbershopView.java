@@ -1,4 +1,4 @@
-package com.example.apps_project.adapters;
+package com.example.apps_project.viewholders;
 
 import android.view.View;
 import android.widget.ImageButton;

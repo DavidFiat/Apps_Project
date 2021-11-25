@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 
 import com.example.apps_project.R;
 import com.example.apps_project.adapters.BarbershopsAdapter;
+import com.example.apps_project.model.Barbershop;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,7 +50,19 @@ public class BarbershopsFragment extends Fragment {
         barbershopsRecycler.setLayoutManager(manager);
         barbershopsRecycler.setAdapter(adapter);
         barbershopsRecycler.setHasFixedSize(true);
-
+        getBarbershops();
         return view;
+    }
+
+    private void getBarbershops() {
+        FirebaseFirestore.getInstance().collection("barbershops").get().addOnCompleteListener(
+                task ->{
+                    adapter.clear();
+                    for(DocumentSnapshot doc : task.getResult()){
+                        Barbershop barbershop = doc.toObject(Barbershop.class);
+                        adapter.addBarbershop(barbershop);
+                    }
+                }
+        );
     }
 }

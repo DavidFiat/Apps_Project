@@ -1,6 +1,5 @@
 package com.example.apps_project.adapters;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +7,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.apps_project.R;
 import com.example.apps_project.model.Barbershop;
+import com.example.apps_project.viewholders.BarbershopView;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -37,7 +39,11 @@ public class BarbershopsAdapter extends RecyclerView.Adapter<BarbershopView>{
         skeleton.setBarbershop(barbershop);
         skeleton.getNameTV().setText(barbershop.getName());
         skeleton.getRateTV().setText(barbershop.getRate());
-        //skeleton.getImageBarbershop().setImageURI(Uri.parse(barbershop.getUrlImage()));
+        FirebaseStorage.getInstance().getReference().child("barbershops").child(barbershop.getUrlImage()).getDownloadUrl().addOnSuccessListener(
+                url->{
+                    Glide.with(skeleton.getImageBarbershop()).load(url).into(skeleton.getImageBarbershop());
+                }
+        );
     }
 
     @Override
@@ -48,5 +54,11 @@ public class BarbershopsAdapter extends RecyclerView.Adapter<BarbershopView>{
     public void addBarbershop(Barbershop barbershop){
         barbershops.add(barbershop);
         notifyItemInserted(barbershops.size()-1);
+    }
+
+    public void clear() {
+        int size = barbershops.size();
+        barbershops.clear();
+        notifyItemRangeRemoved(0, size);
     }
 }

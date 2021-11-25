@@ -3,7 +3,7 @@
     <style name="Theme.Apps_Project" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/fondoPantalla</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/white</item>

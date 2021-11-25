@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(FirebaseAuth.getInstance().getCurrentUser() == null || !FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()){
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
             Intent intent = new Intent(this, RolActivity.class);
             startActivity(intent);
             finish();

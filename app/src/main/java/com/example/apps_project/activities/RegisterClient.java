@@ -48,11 +48,7 @@ public class RegisterClient extends AppCompatActivity {
                         FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
                         User user = new User(fbUser.getUid(), "client");
                         Client client = new Client(fbUser.getUid(), name, email);
-                        FirebaseFirestore.getInstance().collection("users").document(fbUser.getUid()).set(user).addOnSuccessListener(
-                                firetask->{
-                                    sendVerificationEmail();
-                                }
-                        );
+                        FirebaseFirestore.getInstance().collection("users").document(fbUser.getUid()).set(user);
                         FirebaseFirestore.getInstance().collection("clients").document(fbUser.getUid()).set(client).addOnSuccessListener(
                                 firetask->{
                                     finish();
@@ -67,17 +63,5 @@ public class RegisterClient extends AppCompatActivity {
         } else{
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
         }
-    }
-
-    private void sendVerificationEmail() {
-        FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification().addOnSuccessListener(
-                task->{
-                    Toast.makeText(this, "Verifique su email antes de entrar", Toast.LENGTH_LONG).show();
-                }
-        ).addOnFailureListener(
-                error->{
-                    Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
-                }
-        );
     }
 }
