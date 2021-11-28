@@ -54,6 +54,7 @@ public class ClientActivity extends AppCompatActivity {
         FirebaseFirestore.getInstance().collection("clients").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(
             document -> {
                 client = document.toObject(Client.class);
+                profileFragment.setClient(client);
             }
         );
     }

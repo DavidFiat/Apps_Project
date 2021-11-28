@@ -21,8 +21,8 @@
             android:id="@+id/nameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
             android:background="@color/fondoBarberias"
             android:text="TextView"
             android:textColor="@color/fondoPantalla"
@@ -32,11 +32,11 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="31dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="32dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="24dp"
             android:background="@color/fondoBarberias"
             android:tint="@color/fondoPantalla"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -56,16 +56,23 @@
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
-        <ImageButton
-            android:id="@+id/imageBarbershop"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/barbershops_container"
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/nameTV"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="@+id/nameTV">
+
+            <ImageButton
+                android:id="@+id/imageBarbershop"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@color/fondoBarberias"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/avatars" />
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
