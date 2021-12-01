@@ -8,38 +8,38 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apps_project.R;
+import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Barbershop;
 
-public class BarbershopView extends RecyclerView.ViewHolder{
+public class BarbersView extends RecyclerView.ViewHolder{
 
-    private Barbershop barbershop;
-    private ImageButton imageBarbershop;
+    private Barber barber;
+    private ImageButton imageBarber;
     private TextView nameTV, rateTV;
 
 
-    public BarbershopView(@NonNull View itemView) {
+
+    public BarbersView(@NonNull View itemView) {
         super(itemView);
-        imageBarbershop = itemView.findViewById(R.id.imageBarbershop);
+        imageBarber = itemView.findViewById(R.id.imageBarbershop);
         nameTV = itemView.findViewById(R.id.nameTV);
         rateTV = itemView.findViewById(R.id.rateTV);
-
     }
 
-
-    public Barbershop getBarbershop() {
-        return barbershop;
+    public Barber getBarber() {
+        return barber;
     }
 
-    public void setBarbershop(Barbershop barbershop) {
-        this.barbershop = barbershop;
+    public void setBarber(Barber barber) {
+        this.barber = barber;
     }
 
-    public ImageButton getImageBarbershop() {
-        return imageBarbershop;
+    public ImageButton getImageBarber() {
+        return imageBarber;
     }
 
-    public void setImageBarbershop(ImageButton imageBarbershop) {
-        this.imageBarbershop = imageBarbershop;
+    public void setImageBarber(ImageButton imageBarber) {
+        this.imageBarber = imageBarber;
     }
 
     public TextView getNameTV() {

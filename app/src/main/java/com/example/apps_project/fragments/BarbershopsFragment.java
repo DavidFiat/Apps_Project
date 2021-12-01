@@ -1,5 +1,6 @@
 package com.example.apps_project.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.apps_project.R;
+import com.example.apps_project.activities.BarbersActivity;
 import com.example.apps_project.adapters.BarbershopsAdapter;
 import com.example.apps_project.model.Barbershop;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -21,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * Use the {@link BarbershopsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BarbershopsFragment extends Fragment {
+public class BarbershopsFragment extends Fragment implements BarbershopsAdapter.OnListBarbers {
 
 
     private RecyclerView barbershopsRecycler;
@@ -45,11 +47,12 @@ public class BarbershopsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_barbershops, container, false);
 
-        barbershopsRecycler = view.findViewById(R.id.barbershopsRecycler);
+        barbershopsRecycler = view.findViewById(R.id.barbersRecycler);
         manager = new LinearLayoutManager(view.getContext());
         barbershopsRecycler.setLayoutManager(manager);
         barbershopsRecycler.setAdapter(adapter);
         barbershopsRecycler.setHasFixedSize(true);
+        adapter.setOnListBarbers(this);
         getBarbershops();
         return view;
     }
@@ -64,5 +67,12 @@ public class BarbershopsFragment extends Fragment {
                     }
                 }
         );
+    }
+
+    @Override
+    public void onListBarbers(Barbershop barbershop) {
+        Intent i = new Intent(getContext(), BarbersActivity.class);
+        i.putExtra("barbershop",barbershop);
+        startActivity(i);
     }
 }

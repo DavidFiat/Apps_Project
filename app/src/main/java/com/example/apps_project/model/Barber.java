@@ -1,20 +1,18 @@
 package com.example.apps_project.model;
 
-import android.util.Log;
-
 import java.io.Serializable;
 
-public class Barbershop implements Serializable {
+public class Barber implements Serializable {
 
     private String id;
     private String name;
     private String rate;
     private String urlImage;
 
-    public Barbershop() {
+    public Barber() {
     }
 
-    public Barbershop(String id, String name, String rate, String urlImage) {
+    public Barber(String id, String name, String rate, String urlImage) {
         this.id = id;
         this.name = name;
         this.rate = rate;
