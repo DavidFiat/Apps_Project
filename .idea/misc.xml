@@ -3,33 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< Updated upstream
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/drawable/edittext.xml" value="0.14629629629629629" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/font/lobster.xml" value="0.12314814814814815" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_client.xml" value="0.1408514492753623" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_login_client.xml" value="0.22" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_register_client.xml" value="0.22" />
-        <entry key="..\:/Users/manue/Documents/AplicacionesMoviles/Apps_Project/app/src/main/res/layout/activity_rol.xml" value="0.22" />
-        <entry key="app/src/main/res/drawable/barbershops_container.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_barbers.xml" value="0.1259259259259259" />
-        <entry key="app/src/main/res/layout/activity_cita.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_client.xml" value="0.2736625514403292" />
-        <entry key="app/src/main/res/layout/activity_login_client.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.16770833333333332" />
-        <entry key="app/src/main/res/layout/activity_register_client.xml" value="0.16770833333333332" />
-        <entry key="app/src/main/res/layout/activity_rol.xml" value="0.11388888888888889" />
-        <entry key="app/src/main/res/layout/barbers_row.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/barbershop_row.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_barbershops.xml" value="0.24728260869565216" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.23822463768115942" />
-=======
         <entry key="..\:/Users/david/Desktop/Universidad/Academico/Apps/Final_Project/app/src/main/res/layout/activity_client.xml" value="0.16" />
-        <entry key="..\:/Users/david/Desktop/Universidad/Academico/Apps/Final_Project/app/src/main/res/layout/activity_login_barber.xml" value="0.12771739130434784" />
+        <entry key="..\:/Users/david/Desktop/Universidad/Academico/Apps/Final_Project/app/src/main/res/layout/activity_login_barber.xml" value="0.22" />
         <entry key="..\:/Users/david/Desktop/Universidad/Academico/Apps/Final_Project/app/src/main/res/layout/activity_login_client.xml" value="0.22" />
+        <entry key="..\:/Users/david/Desktop/Universidad/Academico/Apps/Final_Project/app/src/main/res/layout/activity_register_barber.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/david/Desktop/Universidad/Academico/Apps/Final_Project/app/src/main/res/layout/activity_register_client.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/david/Desktop/Universidad/Academico/Apps/Final_Project/app/src/main/res/layout/barbershop_row.xml" value="0.25" />
         <entry key="..\:/Users/david/Desktop/Universidad/Academico/Apps/Final_Project/app/src/main/res/layout/fragment_barbershops.xml" value="0.22" />
->>>>>>> Stashed changes
       </map>
     </option>
   </component>
