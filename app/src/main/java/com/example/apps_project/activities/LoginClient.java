@@ -33,12 +33,12 @@ import java.util.Arrays;
 
 public class LoginClient extends AppCompatActivity  {
 
-    private TextView registerTV;
+
     private EditText emailET, passwordET;
     private Button loginBtn;
-
     private LoginButton loginButton;
     private CallbackManager callbackManager;
+    private TextView registerTV;
 
 
 

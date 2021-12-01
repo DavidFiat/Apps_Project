@@ -12,11 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apps_Project">
         <activity
+<<<<<<< Updated upstream
             android:name=".activities.CitaActivity"
             android:exported="true" />
         <activity
             android:name=".activities.BarbersActivity"
             android:exported="true" />
+=======
+            android:name=".activities.LoginBarber"
+            android:exported="false" />
+>>>>>>> Stashed changes
         <activity
             android:name=".activities.RegisterClient"
             android:exported="false" />
