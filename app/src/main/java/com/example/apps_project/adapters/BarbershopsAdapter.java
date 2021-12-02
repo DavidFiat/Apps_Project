@@ -42,9 +42,7 @@ public class BarbershopsAdapter extends RecyclerView.Adapter<BarbershopView>{
                     onListBarbers.onListBarbers(skeleton.getBarbershop());
                 }
         );
-
         return skeleton;
-
     }
 
 
@@ -60,7 +58,6 @@ public class BarbershopsAdapter extends RecyclerView.Adapter<BarbershopView>{
                     Glide.with(skeleton.getImageBarbershop()).load(url).into(skeleton.getImageBarbershop());
                 }
         );
-
     }
 
     public ArrayList<Barbershop> getBarbershops() {

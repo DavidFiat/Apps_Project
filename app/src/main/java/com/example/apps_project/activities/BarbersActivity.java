@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.example.apps_project.R;
 import com.example.apps_project.adapters.BarbersAdapter;
@@ -15,7 +13,6 @@ import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Barbershop;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.gson.Gson;
 
 public class BarbersActivity extends AppCompatActivity implements BarbersAdapter.OnCitasBarber {
 
@@ -33,7 +30,7 @@ public class BarbersActivity extends AppCompatActivity implements BarbersAdapter
 
 
 
-        barbersRecycler = findViewById(R.id.barbersRecycler);
+        barbersRecycler = findViewById(R.id.reservesRecycler);
         manager = new LinearLayoutManager(this);
         barbersRecycler.setLayoutManager(manager);
         barbersRecycler.setAdapter(adapter);

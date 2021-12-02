@@ -8,29 +8,27 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apps_project.R;
-import com.example.apps_project.model.Barber;
+import com.example.apps_project.model.Reserve;
 
-public class BarbersView extends RecyclerView.ViewHolder{
+public class ReserveView extends RecyclerView.ViewHolder{
 
-    private Barber barber;
+    private Reserve reserve;
     private ImageButton imageBarber;
-    private TextView nameTV, rateTV;
+    private TextView nameTV, dateTV;
 
-
-
-    public BarbersView(@NonNull View itemView) {
+    public ReserveView(@NonNull View itemView) {
         super(itemView);
         imageBarber = itemView.findViewById(R.id.imageBarber);
         nameTV = itemView.findViewById(R.id.nameTV);
-        rateTV = itemView.findViewById(R.id.dateTV);
+        dateTV = itemView.findViewById(R.id.dateTV);
     }
 
-    public Barber getBarber() {
-        return barber;
+    public Reserve getReserve() {
+        return reserve;
     }
 
-    public void setBarber(Barber barber) {
-        this.barber = barber;
+    public void setReserve(Reserve reserve) {
+        this.reserve = reserve;
     }
 
     public ImageButton getImageBarber() {
@@ -49,11 +47,11 @@ public class BarbersView extends RecyclerView.ViewHolder{
         this.nameTV = nameTV;
     }
 
-    public TextView getRateTV() {
-        return rateTV;
+    public TextView getDateTV() {
+        return dateTV;
     }
 
-    public void setRateTV(TextView rateTV) {
-        this.rateTV = rateTV;
+    public void setDateTV(TextView dateTV) {
+        this.dateTV = dateTV;
     }
 }

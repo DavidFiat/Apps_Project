@@ -19,9 +19,9 @@ public class BarbershopView extends RecyclerView.ViewHolder{
 
     public BarbershopView(@NonNull View itemView) {
         super(itemView);
-        imageBarbershop = itemView.findViewById(R.id.imageBarbershop);
+        imageBarbershop = itemView.findViewById(R.id.imageBarber);
         nameTV = itemView.findViewById(R.id.nameTV);
-        rateTV = itemView.findViewById(R.id.rateTV);
+        rateTV = itemView.findViewById(R.id.dateTV);
 
     }
 
