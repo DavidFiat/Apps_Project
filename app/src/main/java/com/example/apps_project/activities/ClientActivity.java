@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.apps_project.R;
 import com.example.apps_project.fragments.BarbershopsFragment;
@@ -30,7 +29,7 @@ public class ClientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client);
 
-        navigator = findViewById(R.id.navigator);
+        navigator = findViewById(R.id.navigatorbarbershop);
         barbershopsFragment = BarbershopsFragment.newInstance();
         profileFragment = ProfileFragment.newInstance();
         reserveFragment = ReserveFragment.newInstance();
@@ -40,7 +39,7 @@ public class ClientActivity extends AppCompatActivity {
 
         navigator.setOnItemSelectedListener(
                 menuItem -> {
-                    if(menuItem.getItemId() == R.id.barbershopitem){
+                    if(menuItem.getItemId() == R.id.barbersitem){
                         showFragment(barbershopsFragment);
                     } else if(menuItem.getItemId() == R.id.reserveitem){
                         showFragment(reserveFragment);

@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/barbershopitem"
+        android:id="@+id/barbersitem"
         android:icon="@drawable/people"
         android:title="Mis barberos" />
     <item
-        android:id="@+id/newBarberItem"
+        android:id="@+id/newbarberitem"
         android:icon="@drawable/addicon"
         android:title="Nuevo barbero" />
     <item

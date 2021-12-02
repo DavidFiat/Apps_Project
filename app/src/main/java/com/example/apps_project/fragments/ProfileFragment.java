@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.example.apps_project.R;
 import com.example.apps_project.activities.LoginClient;
 import com.example.apps_project.activities.RolActivity;
+import com.example.apps_project.model.Barber;
+import com.example.apps_project.model.Barbershop;
 import com.example.apps_project.model.Client;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +27,7 @@ public class ProfileFragment extends Fragment {
 
     private Button exitBtn;
     private Client client;
+    private Barbershop barbershop;
     private TextView nameTV, emailTV;
 
     public ProfileFragment() {
@@ -33,6 +36,9 @@ public class ProfileFragment extends Fragment {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+    public void setBarbershop(Barbershop barbershop) {
+        this.barbershop = barbershop;
     }
 
     public static ProfileFragment newInstance() {

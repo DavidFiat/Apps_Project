@@ -126,7 +126,7 @@ public class LoginBarbershop extends AppCompatActivity  {
                             FirebaseUser fbuser = FirebaseAuth.getInstance().getCurrentUser();
                             if(fbuser.isEmailVerified()){
                                 //Le damos acceso
-                                Intent intent = new Intent(this, BarbershopActivity.class);
+                                Intent intent = new Intent(this, BarbershopsActivity.class);
                                 startActivity(intent);
 
 
