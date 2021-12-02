@@ -30,7 +30,7 @@ public class BarbersActivity extends AppCompatActivity implements BarbersAdapter
 
 
 
-        barbersRecycler = findViewById(R.id.reservesRecycler);
+        barbersRecycler = findViewById(R.id.barbersRecycler);
         manager = new LinearLayoutManager(this);
         barbersRecycler.setLayoutManager(manager);
         barbersRecycler.setAdapter(adapter);

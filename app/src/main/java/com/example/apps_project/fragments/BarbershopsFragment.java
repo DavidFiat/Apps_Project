@@ -47,7 +47,7 @@ public class BarbershopsFragment extends Fragment implements BarbershopsAdapter.
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_barbershops, container, false);
 
-        barbershopsRecycler = view.findViewById(R.id.reservesRecycler);
+        barbershopsRecycler = view.findViewById(R.id.barbershopsRecycler);
         manager = new LinearLayoutManager(view.getContext());
         barbershopsRecycler.setLayoutManager(manager);
         barbershopsRecycler.setAdapter(adapter);
