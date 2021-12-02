@@ -5,7 +5,11 @@
     <item
         android:id="@+id/barbershopitem"
         android:icon="@drawable/people"
-        android:title="Barberos" />
+        android:title="Mis barberos" />
+    <item
+        android:id="@+id/newBarberItem"
+        android:icon="@drawable/addIcon"
+        android:title="Nuevo barbero" />
     <item
         android:id="@+id/perfilitem"
         android:icon="@drawable/profile"
