@@ -1,4 +1,6 @@
 package com.example.apps_project.activities;
 
-public class BarbershopActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class BarbershopActivity extends AppCompatActivity {
 }

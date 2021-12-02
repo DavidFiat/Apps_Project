@@ -24,17 +24,13 @@ public class RolActivity extends AppCompatActivity {
 
         clientBtn.setOnClickListener(
                 (v)->{
-
                     Intent intent = new Intent(this, LoginClient.class);
                     startActivity(intent);
-
                 }
-
         );
 
         barberiaBtn.setOnClickListener(
                 (v)->{
-                    Log.i("", "Barberia");
                     Intent intent = new Intent(this, LoginBarbershop.class);
                     startActivity(intent);
                 }

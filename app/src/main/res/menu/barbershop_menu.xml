@@ -8,7 +8,7 @@
         android:title="Mis barberos" />
     <item
         android:id="@+id/newBarberItem"
-        android:icon="@drawable/addIcon"
+        android:icon="@drawable/addicon"
         android:title="Nuevo barbero" />
     <item
         android:id="@+id/perfilitem"

@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.apps_project.R;
 import com.example.apps_project.model.Barbershop;
-import com.example.apps_project.model.Client;
 import com.example.apps_project.model.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -66,10 +65,6 @@ public class LoginBarbershop extends AppCompatActivity  {
         loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.setOnClickListener(this::loginFB);
-
-
-        Log.i("", "Holaaa");
-
     }
 
     private void loginFB(View view) {
