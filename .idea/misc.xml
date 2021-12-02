@@ -14,16 +14,21 @@
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/drawable/edittext.xml" value="0.2203125" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/font/lobster_font.xml" value="0.234375" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_barbers.xml" value="0.19429347826086957" />
+        <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_barbershop.xml" value="0.17527173913043478" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_cita.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_client.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_login_barber.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_login_barbershop.xml" value="0.22" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_login_client.xml" value="0.19429347826086957" />
+        <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_main.xml" value="0.17527173913043478" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_register_barber.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_register_barbershop.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_rol.xml" value="0.19429347826086957" />
+        <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/barbershop_row.xml" value="0.17527173913043478" />
+        <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_barbershops.xml" value="0.17527173913043478" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_profile.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_reserve.xml" value="0.19429347826086957" />
+        <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/menu/barbershop_menu.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/menu/home_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
