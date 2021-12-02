@@ -1,6 +1,5 @@
 package com.example.apps_project.fragments;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,33 +9,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.apps_project.R;
-import com.example.apps_project.activities.LoginClient;
 import com.example.apps_project.activities.RolActivity;
-import com.example.apps_project.model.Client;
-import com.facebook.login.LoginManager;
+import com.example.apps_project.model.Barber;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragmentBarber extends Fragment {
 
 
     private Button exitBtn;
-    private Client client;
-    private TextView nameTV, emailTV;
+    private Barber barber;
+    private TextView nameTV, pointTV;
 
-    public ProfileFragment() {
-        // Required empty public constructor
+    public ProfileFragmentBarber() {
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setbarber(Barber barber) {
+        this.barber = barber;
     }
 
-    public static ProfileFragment newInstance() {
-        ProfileFragment fragment = new ProfileFragment();
+    public static ProfileFragmentBarber newInstance() {
+        ProfileFragmentBarber fragment = new ProfileFragmentBarber();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -47,17 +42,18 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile_barber, container, false);
         exitBtn = view.findViewById(R.id.exitBtn);
-        emailTV = view.findViewById(R.id.emailTV);
+        pointTV = view.findViewById(R.id.pointTV);
         nameTV = view.findViewById(R.id.nameTV);
-        emailTV.setText(client.getEmail());
-        nameTV.setText(client.getName());
-        exitBtn.setOnClickListener(this::exitClient);
+
+        pointTV.setText(barber.getRate());
+        nameTV.setText(barber.getName());
+        exitBtn.setOnClickListener(this::exitbarber);
         return view;
     }
 
-    private void exitClient(View view) {
+    private void exitbarber(View view) {
         FirebaseAuth.getInstance().signOut();
         com.facebook.login.LoginManager.getInstance().logOut();
         Intent intent = new Intent(view.getContext(), RolActivity.class);
