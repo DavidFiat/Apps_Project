@@ -49,7 +49,7 @@ public class LoginBarber extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         registerTV.setOnClickListener(
                 (v)->{
-                    Intent intent = new Intent(this, MainActivity.class);
+                    Intent intent = new Intent(this, RegisterBarber.class);
                     startActivity(intent);
                 }
         );
@@ -60,10 +60,6 @@ public class LoginBarber extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.setOnClickListener(this::loginFB);
-
-
-
-
     }
 
     private void loginFB(View view) {

@@ -24,6 +24,12 @@
             android:name=".activities.RegisterClient"
             android:exported="false" />
         <activity
+            android:name=".activities.LoginBarber"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BarberActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.LoginClient"
             android:exported="false" />
         <activity
