@@ -19,7 +19,10 @@ import com.example.apps_project.fragments.DateDialogFragment;
 import com.example.apps_project.fragments.ReserveFragment;
 import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Barbershop;
+import com.example.apps_project.model.Client;
 import com.example.apps_project.model.Reserve;
+import com.example.apps_project.model.ReserveBarber;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -31,6 +34,7 @@ public class CitaActivity extends AppCompatActivity {
 
     private Barber barber;
     private Barbershop barbershop;
+    private Client client;
 
     private ImageView imgBarber;
     private TextView nameBarber,nameBTV,citaTV;
@@ -56,6 +60,11 @@ public class CitaActivity extends AppCompatActivity {
                     Glide.with(imgBarber).load(url).into(imgBarber);
                 }
         );
+        FirebaseFirestore.getInstance().collection("clients").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(
+                document -> {
+                    client = document.toObject(Client.class);
+                }
+        );
         nameBarber.setText(barber.getName());
         nameBTV.setText(barbershop.getName());
         
@@ -72,13 +81,18 @@ public class CitaActivity extends AppCompatActivity {
 
     private void reserve(View view) {
 
-        Reserve reserve = new Reserve(UUID.randomUUID().toString(),barber.getName(),barber.getUrlImage(),citaTV.getText().toString());
+
+
+        ReserveBarber reserveBarber = new ReserveBarber(UUID.randomUUID().toString(),client.getName(),citaTV.getText().toString());
         FirebaseFirestore.getInstance().collection("barbershops").document(barbershop.getId()).collection("barbers").
-                document(barber.getId()).collection("reserves").document(reserve.getId()).set(reserve);
+                document(barber.getId()).collection("reserves").document(reserveBarber.getId()).set(reserveBarber);
         runOnUiThread(()->{
             Toast.makeText(view.getContext(),"Se ha reservado tu cita exitosamente!",Toast.LENGTH_LONG).show();
 
         });
+
+        Reserve reserve = new Reserve(UUID.randomUUID().toString(),barber.getName(),barber.getUrlImage(),citaTV.getText().toString());
+        FirebaseFirestore.getInstance().collection("clients").document(client.getId()).collection("reserves").document(reserve.getId()).set(reserve);
         Intent intent= new Intent(view.getContext(),ClientActivity.class);
         startActivity(intent);
         finish();
