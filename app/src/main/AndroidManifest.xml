@@ -21,16 +21,16 @@
             android:name=".activities.BarbersActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.RegisterClient"
-            android:exported="false" />
-        <activity
             android:name=".activities.LoginBarber"
-            android:exported="false" />
+            android:exported="true" />
+        <activity
+            android:name=".activities.LoginClient"
+            android:exported="true" />
         <activity
             android:name=".activities.BarberActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.LoginClient"
+            android:name=".activities.RegisterClient"
             android:exported="false" />
         <activity
             android:name=".activities.ClientActivity"

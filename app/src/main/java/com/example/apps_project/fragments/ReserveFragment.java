@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.example.apps_project.R;
 import com.example.apps_project.adapters.ReservesAdapter;
 import com.example.apps_project.model.Barbershop;
+import com.example.apps_project.model.Client;
+import com.example.apps_project.model.Reserve;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -26,9 +28,14 @@ public class ReserveFragment extends Fragment {
     private RecyclerView reservesRecycler;
     private LinearLayoutManager manager;
     private ReservesAdapter adapter;
+    private Client client;
 
     public ReserveFragment() {
         adapter = new ReservesAdapter();
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public static ReserveFragment newInstance() {
@@ -54,6 +61,14 @@ public class ReserveFragment extends Fragment {
     }
 
     private void getReserves() {
-
+        FirebaseFirestore.getInstance().collection("clients").document(client.getId()).collection("reserves").get().addOnCompleteListener(
+                task ->{
+                    adapter.clear();
+                    for(DocumentSnapshot doc : task.getResult()){
+                        Reserve reserve = doc.toObject(Reserve.class);
+                        adapter.addReserve(reserve);
+                    }
+                }
+        );
     }
 }

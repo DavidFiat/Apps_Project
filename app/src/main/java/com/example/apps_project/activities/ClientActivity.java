@@ -55,6 +55,7 @@ public class ClientActivity extends AppCompatActivity {
             document -> {
                 client = document.toObject(Client.class);
                 profileFragment.setClient(client);
+                reserveFragment.setClient(client);
             }
         );
     }

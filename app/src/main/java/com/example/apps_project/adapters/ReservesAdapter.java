@@ -29,7 +29,7 @@ public class ReservesAdapter extends RecyclerView.Adapter<ReserveView>{
     @Override
     public ReserveView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.barbershop_row, parent, false);
+        View row = inflater.inflate(R.layout.reserve_row, parent, false);
         ReserveView skeleton = new ReserveView(row);
         return skeleton;
     }
@@ -40,10 +40,26 @@ public class ReservesAdapter extends RecyclerView.Adapter<ReserveView>{
         skeleton.setReserve(reserve);
         skeleton.getNameTV().setText(reserve.getName());
         skeleton.getDateTV().setText(reserve.getDate());
+        FirebaseStorage.getInstance().getReference().child("barbers").child(reserve.getUrlImageBarber()).getDownloadUrl().addOnSuccessListener(
+                url->{
+                    Glide.with(skeleton.getImageBarber()).load(url).into(skeleton.getImageBarber());
+                }
+        );
     }
 
     @Override
     public int getItemCount() {
         return reserves.size();
+    }
+
+    public void clear() {
+        int size = reserves.size();
+        reserves.clear();
+        notifyItemRangeRemoved(0, size);
+    }
+
+    public void addReserve(Reserve reserve){
+        reserves.add(reserve);
+        notifyItemInserted(reserves.size()-1);
     }
 }
