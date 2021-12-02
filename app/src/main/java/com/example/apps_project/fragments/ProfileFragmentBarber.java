@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.apps_project.R;
@@ -22,6 +23,7 @@ public class ProfileFragmentBarber extends Fragment {
     private Button exitBtn;
     private Barber barber;
     private TextView nameTV, pointTV;
+    private ImageView image;
 
     public ProfileFragmentBarber() {
     }
@@ -46,6 +48,7 @@ public class ProfileFragmentBarber extends Fragment {
         exitBtn = view.findViewById(R.id.exitBtn);
         pointTV = view.findViewById(R.id.pointTV);
         nameTV = view.findViewById(R.id.nameTV);
+        image = view.findViewById(R.id.image);
 
         pointTV.setText(barber.getRate());
         nameTV.setText(barber.getName());
