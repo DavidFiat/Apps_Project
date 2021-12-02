@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
                                 intent.putExtra("client", loadedUser);
                                 startActivity(intent);
                                 break;
+                            case "barber":
+                                Intent i = new Intent(this, BarberActivity.class);
+                                i.putExtra("barber", loadedUser);
+                                startActivity(i);
+                                break;
                         }
                     }
             );

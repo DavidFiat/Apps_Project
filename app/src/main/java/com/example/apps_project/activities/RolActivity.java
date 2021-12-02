@@ -10,7 +10,7 @@ import com.example.apps_project.R;
 
 public class RolActivity extends AppCompatActivity {
 
-    private ImageButton clientBtn;
+    private ImageButton clientBtn, barberoBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +18,18 @@ public class RolActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rol);
 
         clientBtn = findViewById(R.id.clientBtn);
+        barberoBtn = findViewById(R.id.barberoBtn);
 
         clientBtn.setOnClickListener(
                 (v)->{
                     Intent intent = new Intent(this, LoginClient.class);
+                    startActivity(intent);
+                }
+        );
+
+        barberoBtn.setOnClickListener(
+                (v)->{
+                    Intent intent = new Intent(this, LoginBarber.class);
                     startActivity(intent);
                 }
         );

@@ -49,7 +49,7 @@ public class LoginBarber extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         registerTV.setOnClickListener(
                 (v)->{
-                    Intent intent = new Intent(this, MainActivity.class);
+                    Intent intent = new Intent(this, RegisterBarber.class);
                     startActivity(intent);
                 }
         );
@@ -60,10 +60,6 @@ public class LoginBarber extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.setOnClickListener(this::loginFB);
-
-
-
-
     }
 
     private void loginFB(View view) {
@@ -123,15 +119,8 @@ public class LoginBarber extends AppCompatActivity {
                 .addOnSuccessListener(
                         task->{
                             FirebaseUser fbuser = FirebaseAuth.getInstance().getCurrentUser();
-                            if(fbuser.isEmailVerified()){
-                                //Le damos acceso
-                                Intent intent = new Intent(this, BarberActivity.class);
-                                startActivity(intent);
-
-
-                            }else{
-                                Toast.makeText(this, "Su email no está verificado", Toast.LENGTH_LONG).show();
-                            }
+                            Intent intent = new Intent(this, BarberActivity.class);
+                            startActivity(intent);
                         }
                 ).addOnFailureListener(
                 error->Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show()

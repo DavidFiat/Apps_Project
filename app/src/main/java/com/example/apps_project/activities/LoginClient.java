@@ -129,15 +129,8 @@ public class LoginClient extends AppCompatActivity  {
                 .addOnSuccessListener(
                         task->{
                             FirebaseUser fbuser = FirebaseAuth.getInstance().getCurrentUser();
-                            if(fbuser.isEmailVerified()){
-                                //Le damos acceso
-                                Intent intent = new Intent(this, ClientActivity.class);
-                                startActivity(intent);
-
-
-                            }else{
-                                Toast.makeText(this, "Su email no está verificado", Toast.LENGTH_LONG).show();
-                            }
+                            Intent intent = new Intent(this, ClientActivity.class);
+                            startActivity(intent);
                         }
                 ).addOnFailureListener(
                     error->Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show()
