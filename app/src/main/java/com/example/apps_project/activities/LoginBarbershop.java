@@ -2,6 +2,7 @@ package com.example.apps_project.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,7 +68,7 @@ public class LoginBarbershop extends AppCompatActivity  {
         loginButton.setOnClickListener(this::loginFB);
 
 
-
+        Log.i("", "Holaaa");
 
     }
 
@@ -130,7 +131,7 @@ public class LoginBarbershop extends AppCompatActivity  {
                             FirebaseUser fbuser = FirebaseAuth.getInstance().getCurrentUser();
                             if(fbuser.isEmailVerified()){
                                 //Le damos acceso
-                                Intent intent = new Intent(this, ClientActivity.class);
+                                Intent intent = new Intent(this, BarbershopActivity.class);
                                 startActivity(intent);
 
 

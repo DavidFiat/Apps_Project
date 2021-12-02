@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.apps_project.R;
-import com.example.apps_project.model.Barber;
+import com.example.apps_project.model.Barbershop;
 import com.example.apps_project.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,7 +22,7 @@ public class RegisterBarbershop extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_barber);
+        setContentView(R.layout.activity_register_barbershop);
 
         nameET = findViewById(R.id.nameTV);
         emailET = findViewById(R.id.emailET);
@@ -43,12 +43,12 @@ public class RegisterBarbershop extends AppCompatActivity {
             //1. Registrarse en la db de auth
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnSuccessListener(
                     task->{
-                        //2. Registrar al usuario en la base de datos
+                        //2. Registrar barbería en la base de datos
                         FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
                         User user = new User(fbUser.getUid(), "barbershop");
-                        Barber barber = new Barber(fbUser.getUid(), name,"", email,"");
+                        Barbershop barbershop = new Barbershop(fbUser.getUid(), name,"", email,"");
                         FirebaseFirestore.getInstance().collection("users").document(fbUser.getUid()).set(user);
-                        FirebaseFirestore.getInstance().collection("barbershops").document(fbUser.getUid()).set(barber).addOnSuccessListener(
+                        FirebaseFirestore.getInstance().collection("barbershops").document(fbUser.getUid()).set(barbershop).addOnSuccessListener(
                                 firetask->{
                                     finish();
                                 }
