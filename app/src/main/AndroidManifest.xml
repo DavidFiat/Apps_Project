@@ -24,6 +24,9 @@
             android:name=".activities.LoginBarber"
             android:exported="true" />
         <activity
+            android:name=".activities.RegisterBarbershop"
+            android:exported="false" />
+        <activity
             android:name=".activities.LoginClient"
             android:exported="true" />
         <activity
@@ -33,7 +36,16 @@
             android:name=".activities.RegisterClient"
             android:exported="false" />
         <activity
+            android:name=".activities.LoginBarbershop"
+            android:exported="false" />
+        <activity
             android:name=".activities.ClientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BarbershopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BarbershopsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.RolActivity"

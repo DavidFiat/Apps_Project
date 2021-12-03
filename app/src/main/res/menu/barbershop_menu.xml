@@ -4,12 +4,12 @@
 
     <item
         android:id="@+id/barbersitem"
-        android:icon="@drawable/barberia"
-        android:title="Barberias" />
+        android:icon="@drawable/people"
+        android:title="Mis barberos" />
     <item
-        android:id="@+id/reserveitem"
-        android:icon="@drawable/calendar"
-        android:title="Mis reservas" />
+        android:id="@+id/newbarberitem"
+        android:icon="@drawable/addicon"
+        android:title="Nuevo barbero" />
     <item
         android:id="@+id/perfilitem"
         android:icon="@drawable/profile"
