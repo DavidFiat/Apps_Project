@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 
 import com.example.apps_project.R;
 
 public class RolActivity extends AppCompatActivity {
 
-    private ImageButton clientBtn, barberoBtn;
+    private ImageButton clientBtn, barberoBtn, barberiaBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,7 @@ public class RolActivity extends AppCompatActivity {
 
         clientBtn = findViewById(R.id.clientBtn);
         barberoBtn = findViewById(R.id.barberoBtn);
-
+        barberiaBtn = findViewById(R.id.barberiaBtn);
         clientBtn.setOnClickListener(
                 (v)->{
                     Intent intent = new Intent(this, LoginClient.class);
@@ -28,8 +29,14 @@ public class RolActivity extends AppCompatActivity {
         );
 
         barberoBtn.setOnClickListener(
-                (v)->{
+                (v)-> {
                     Intent intent = new Intent(this, LoginBarber.class);
+                    startActivity(intent);
+                }
+        );
+        barberiaBtn.setOnClickListener(
+                (v)->{
+                    Intent intent = new Intent(this, LoginBarbershop.class);
                     startActivity(intent);
                 }
         );

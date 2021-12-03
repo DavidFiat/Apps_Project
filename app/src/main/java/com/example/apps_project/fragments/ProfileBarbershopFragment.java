@@ -1,20 +1,16 @@
 package com.example.apps_project.fragments;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.apps_project.R;
-import com.example.apps_project.activities.LoginClient;
 import com.example.apps_project.activities.RolActivity;
 import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Barbershop;
@@ -22,27 +18,23 @@ import com.example.apps_project.model.Client;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfileFragment extends Fragment {
+public class ProfileBarbershopFragment extends Fragment {
 
 
     private Button exitBtn;
-    private Client client;
     private Barbershop barbershop;
     private TextView nameTV, emailTV;
 
-    public ProfileFragment() {
+    public ProfileBarbershopFragment() {
         // Required empty public constructor
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
     public void setBarbershop(Barbershop barbershop) {
         this.barbershop = barbershop;
     }
 
-    public static ProfileFragment newInstance() {
-        ProfileFragment fragment = new ProfileFragment();
+    public static ProfileBarbershopFragment newInstance() {
+        ProfileBarbershopFragment fragment = new ProfileBarbershopFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -57,15 +49,15 @@ public class ProfileFragment extends Fragment {
         exitBtn = view.findViewById(R.id.exitBtn);
         emailTV = view.findViewById(R.id.emailTV);
         nameTV = view.findViewById(R.id.nameTV);
-        emailTV.setText(client.getEmail());
-        nameTV.setText(client.getName());
-        exitBtn.setOnClickListener(this::exitClient);
+        emailTV.setText(barbershop.getEmail());
+        nameTV.setText(barbershop.getName());
+        exitBtn.setOnClickListener(this::exitBarbershop);
         return view;
     }
 
-    private void exitClient(View view) {
+    private void exitBarbershop(View view) {
         FirebaseAuth.getInstance().signOut();
-        com.facebook.login.LoginManager.getInstance().logOut();
+        LoginManager.getInstance().logOut();
         Intent intent = new Intent(view.getContext(), RolActivity.class);
         startActivity(intent);
     }
