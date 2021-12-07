@@ -32,9 +32,6 @@ public class ProfileFragmentClient extends Fragment {
     public void setClient(Client client) {
         this.client = client;
     }
-    public void setBarbershop(Barbershop barbershop) {
-        this.barbershop = barbershop;
-    }
 
     public static ProfileFragmentClient newInstance() {
         ProfileFragmentClient fragment = new ProfileFragmentClient();

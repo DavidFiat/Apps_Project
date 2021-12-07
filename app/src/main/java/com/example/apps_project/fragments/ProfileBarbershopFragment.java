@@ -12,18 +12,16 @@ import androidx.fragment.app.Fragment;
 
 import com.example.apps_project.R;
 import com.example.apps_project.activities.RolActivity;
-import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Barbershop;
-import com.example.apps_project.model.Client;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileBarbershopFragment extends Fragment {
 
 
-    private Button exitBtn;
+    private Button exitBarbershopBtn;
     private Barbershop barbershop;
-    private TextView nameTV, emailTV;
+    private TextView nameBarbershopTV, emailBarbershopTV;
 
     public ProfileBarbershopFragment() {
         // Required empty public constructor
@@ -45,13 +43,13 @@ public class ProfileBarbershopFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        exitBtn = view.findViewById(R.id.exitBtn);
-        emailTV = view.findViewById(R.id.emailTV);
-        nameTV = view.findViewById(R.id.nameTV);
-        emailTV.setText(barbershop.getEmail());
-        nameTV.setText(barbershop.getName());
-        exitBtn.setOnClickListener(this::exitBarbershop);
+        View view = inflater.inflate(R.layout.fragment_profile_barbershop, container, false);
+        exitBarbershopBtn = view.findViewById(R.id.exitBarbershopBtn);
+        emailBarbershopTV = view.findViewById(R.id.emailBarbershopTV);
+        nameBarbershopTV = view.findViewById(R.id.nameBarbershopTV);
+        emailBarbershopTV.setText(barbershop.getEmail());
+        nameBarbershopTV.setText(barbershop.getName());
+        exitBarbershopBtn.setOnClickListener(this::exitBarbershop);
         return view;
     }
 
