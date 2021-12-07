@@ -22,7 +22,6 @@ public class ProfileFragmentClient extends Fragment {
 
     private Button exitBtn;
     private Client client;
-    private Barbershop barbershop;
     private TextView nameTV, emailTV;
 
     public ProfileFragmentClient() {

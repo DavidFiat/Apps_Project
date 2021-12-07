@@ -1,8 +1,9 @@
 package com.example.apps_project.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.example.apps_project.R;
@@ -22,14 +25,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class NewBarberFragment extends Fragment {
+import java.io.File;
+
+public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceListener{
 
 
-    private EditText nameTV, emailTV, passwordET, repasswordET;
+    private EditText nameTV, emailTV, passwordET, repasswordET, linkImg;
     private Barbershop barbershop; //Se supone que es la barbería que está asociada a este nuevo barbero
     private Barber barber;
+    private File file;
     private Button continueBtn;
 
+
+
+    private ActivityResultLauncher<Intent> cameraLauncher;
+    private ActivityResultLauncher<Intent> galleryLauncher;
 
     public NewBarberFragment() {
         // Required empty public constructor
@@ -50,6 +60,10 @@ public class NewBarberFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new_barber, container, false);
+        linkImg = view.findViewById(R.id.linkImg);
+
+        linkImg.setOnClickListener(this::openChoice);
+
         continueBtn = view.findViewById(R.id.continueBtn);
         emailTV = view.findViewById(R.id.emailET);
         nameTV = view.findViewById(R.id.nameTV);
@@ -100,6 +114,11 @@ public class NewBarberFragment extends Fragment {
         }
     }
 
+    public void openChoice(View view){
+        ImageOption dialog = ImageOption.newInstance();
+        dialog.setListener((ImageOption.OnChoiceListener) this);
+        dialog.show(getActivity().getSupportFragmentManager(),"dialog");
+    }
 
     private void exitClient(View view) {
         FirebaseAuth.getInstance().signOut();
@@ -108,4 +127,28 @@ public class NewBarberFragment extends Fragment {
         startActivity(intent);
     }
 
+   @Override
+    public void onChoice(int choice) {
+        if(choice == 0){
+            openCamera(getView());
+        }else if(choice==1){
+            openGallery(getView());
+        }
+    }
+
+    public void openCamera(View view){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        file = new File(getContext().getExternalFilesDir(null)+"/photo.png");
+        Uri uri = FileProvider.getUriForFile(getContext(),getContext().getPackageName(),file);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,uri);
+        cameraLauncher.launch(intent);
+    }
+
+    private void openGallery(View view) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        galleryLauncher.launch(intent);
+    }
+
+    //Borrar todo lo relacionado con la imagen del barbero.
 }
