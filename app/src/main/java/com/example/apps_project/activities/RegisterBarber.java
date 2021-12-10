@@ -37,7 +37,6 @@ public class RegisterBarber extends AppCompatActivity {
     private EditText nameET, emailET, passwordET, repasswordET;
     private Spinner spinner;
     private Button continueBtn;
-    private DatabaseReference dbReference;
     private Barbershop barbershop;
 
 
@@ -52,18 +51,16 @@ public class RegisterBarber extends AppCompatActivity {
         repasswordET = findViewById(R.id.repasswordET);
         continueBtn = findViewById(R.id.continueBtn);
         continueBtn.setOnClickListener(this::register);
-        dbReference = FirebaseDatabase.getInstance().getReference();
+        loadBarberShopsName();
     }
 
     public void loadBarberShopsName() {
         List<String> barberShopsName = new ArrayList<String>();
-        dbReference.child(("barbershops")).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    for (DataSnapshot b : snapshot.getChildren()) {
-                        String name = b.child("name").getValue().toString();
-                        barberShopsName.add(name);
+        FirebaseFirestore.getInstance().collection("barbershops").get().addOnCompleteListener(
+                task ->{
+                    for(DocumentSnapshot doc : task.getResult()){
+                        Barbershop barbershop = doc.toObject(Barbershop.class);
+                        barberShopsName.add(barbershop.getName());
                     }
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                             RegisterBarber.this, android.R.layout.simple_dropdown_item_1line, barberShopsName);
@@ -89,13 +86,7 @@ public class RegisterBarber extends AppCompatActivity {
                         }
                     });
                 }
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+        );
     }
 
 
