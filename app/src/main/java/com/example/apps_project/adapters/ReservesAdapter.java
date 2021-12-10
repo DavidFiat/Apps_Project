@@ -15,7 +15,11 @@ import com.example.apps_project.viewholders.BarbershopView;
 import com.example.apps_project.viewholders.ReserveView;
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ReservesAdapter extends RecyclerView.Adapter<ReserveView>{
 
@@ -45,6 +49,18 @@ public class ReservesAdapter extends RecyclerView.Adapter<ReserveView>{
                     Glide.with(skeleton.getImageBarber()).load(url).into(skeleton.getImageBarber());
                 }
         );
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        Date date = null;
+        try {
+            date = sdf.parse(reserve.getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long millis = date.getTime();
+        long now = Calendar.getInstance().getTimeInMillis();
+        if(millis < now){
+            skeleton.getRateBtn().setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
