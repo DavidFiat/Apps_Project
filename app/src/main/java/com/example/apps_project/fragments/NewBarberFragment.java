@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -30,11 +31,12 @@ import java.io.File;
 public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceListener{
 
 
-    private EditText nameTV, emailTV, passwordET, repasswordET, linkImg;
+    private EditText nameTV, emailTV, passwordET, repasswordET;
     private Barbershop barbershop; //Se supone que es la barbería que está asociada a este nuevo barbero
     private Barber barber;
     private File file;
     private Button continueBtn;
+    private TextView linkImg;
 
 
 

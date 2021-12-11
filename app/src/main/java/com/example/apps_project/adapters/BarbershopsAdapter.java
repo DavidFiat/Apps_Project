@@ -4,6 +4,7 @@ import static androidx.core.content.ContextCompat.startActivities;
 import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,8 @@ public class BarbershopsAdapter extends RecyclerView.Adapter<BarbershopView>{
         skeleton.setBarbershop(barbershop);
         skeleton.getNameTV().setText(barbershop.getName());
         skeleton.getRateTV().setText(barbershop.getRate());
-        if(barbershop.getUrlImage()!= null && !barbershop.getUrlImage().equals("")){
+
+        if(barbershop.getUrlImage() != null && !barbershop.getUrlImage().equals("")){
             FirebaseStorage.getInstance().getReference().child("barbershops").child(barbershop.getUrlImage()).getDownloadUrl().addOnSuccessListener(
                     url->{
                         Glide.with(skeleton.getImageBarbershop()).load(url).into(skeleton.getImageBarbershop());

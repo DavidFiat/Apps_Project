@@ -34,28 +34,24 @@ public class BarbershopActivity extends AppCompatActivity {
         profileBarbershopFragment = ProfileBarbershopFragment.newInstance();
         newBarberFragment = newBarberFragment.newInstance();
 
-
-        showFragment(barbersFragment);
-
-        navigatorbarbershop.setOnItemSelectedListener(
-                menuItem -> {
-                    if(menuItem.getItemId() == R.id.barbersitem){
-                        showFragment(barbersFragment);
-                    } else if(menuItem.getItemId() == R.id.newbarberitem){
-                        showFragment(newBarberFragment);
-                    } else if(menuItem.getItemId() == R.id.perfilitem){
-                        showFragment(profileBarbershopFragment);
-                    }
-                    return true;
-                }
-        );
-
         FirebaseFirestore.getInstance().collection("barbershops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(
                 document -> {
                     barbershop = document.toObject(Barbershop.class);
                     profileBarbershopFragment.setBarbershop(barbershop);
                     barbersFragment.setBarbershop(barbershop);
-
+                    navigatorbarbershop.setOnItemSelectedListener(
+                            menuItem -> {
+                                if(menuItem.getItemId() == R.id.barbersitem){
+                                    showFragment(barbersFragment);
+                                } else if(menuItem.getItemId() == R.id.newbarberitem){
+                                    showFragment(newBarberFragment);
+                                } else if(menuItem.getItemId() == R.id.perfilitem){
+                                    showFragment(profileBarbershopFragment);
+                                }
+                                return true;
+                            }
+                    );
+                    showFragment(barbersFragment);
                 }
         );
     }
