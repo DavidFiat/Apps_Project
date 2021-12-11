@@ -53,11 +53,13 @@ public class BarbershopsAdapter extends RecyclerView.Adapter<BarbershopView>{
         skeleton.setBarbershop(barbershop);
         skeleton.getNameTV().setText(barbershop.getName());
         skeleton.getRateTV().setText(barbershop.getRate());
-        FirebaseStorage.getInstance().getReference().child("barbershops").child(barbershop.getUrlImage()).getDownloadUrl().addOnSuccessListener(
-                url->{
-                    Glide.with(skeleton.getImageBarbershop()).load(url).into(skeleton.getImageBarbershop());
-                }
-        );
+        if(barbershop.getUrlImage()!= null && !barbershop.getUrlImage().equals("")){
+            FirebaseStorage.getInstance().getReference().child("barbershops").child(barbershop.getUrlImage()).getDownloadUrl().addOnSuccessListener(
+                    url->{
+                        Glide.with(skeleton.getImageBarbershop()).load(url).into(skeleton.getImageBarbershop());
+                    }
+            );
+        }
     }
 
     public ArrayList<Barbershop> getBarbershops() {

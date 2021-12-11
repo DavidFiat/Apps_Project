@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,14 +17,17 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.apps_project.R;
+import com.example.apps_project.adapters.RatesAdapter;
 import com.example.apps_project.fragments.DateDialogFragment;
 import com.example.apps_project.fragments.ReserveFragment;
 import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Barbershop;
 import com.example.apps_project.model.Client;
+import com.example.apps_project.model.Rate;
 import com.example.apps_project.model.Reserve;
 import com.example.apps_project.model.ReserveBarber;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -35,7 +40,10 @@ public class CitaActivity extends AppCompatActivity {
     private Barber barber;
     private Barbershop barbershop;
     private Client client;
-
+    private RecyclerView ratesRecycler;
+    private RatesAdapter ratesAdapter;
+    private LinearLayoutManager manager;
+    private TextView rateTV;
     private ImageView imgBarber;
     private TextView nameBarber,nameBTV,citaTV;
     private Button agendarBtn;
@@ -45,6 +53,14 @@ public class CitaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cita);
+
+        ratesAdapter = new RatesAdapter();
+        rateTV = findViewById(R.id.rateTV);
+        manager = new LinearLayoutManager(this);
+        ratesRecycler = findViewById(R.id.ratesRecycler);
+        ratesRecycler.setLayoutManager(manager);
+        ratesRecycler.setAdapter(ratesAdapter);
+        ratesRecycler.setHasFixedSize(true);
 
         barber = (Barber)getIntent().getExtras().get("barber");
         barbershop = (Barbershop) getIntent().getExtras().get("barbershop");
@@ -72,17 +88,26 @@ public class CitaActivity extends AppCompatActivity {
         citaTV.setOnClickListener(this::agendarCita);
         agendarBtn.setOnClickListener(this::reserve);
 
-        
+        getRates();
+    }
 
-
-
-
+    private void getRates() {
+        FirebaseFirestore.getInstance().collection("barbershops").document(barbershop.getId()).collection("barbers").document(barber.getId()).collection("rates").get().addOnCompleteListener(
+                task -> {
+                    double averageRate = 0.0;
+                    ratesAdapter.clear();
+                    for (DocumentSnapshot doc : task.getResult()) {
+                        Rate rate = doc.toObject(Rate.class);
+                        ratesAdapter.addRate(rate);
+                        averageRate += rate.getRate();
+                    }
+                    averageRate /= task.getResult().size();
+                    rateTV.setText(averageRate+"");
+                }
+        );
     }
 
     private void reserve(View view) {
-
-
-
         ReserveBarber reserveBarber = new ReserveBarber(UUID.randomUUID().toString(),client.getName(),citaTV.getText().toString());
         FirebaseFirestore.getInstance().collection("barbershops").document(barbershop.getId()).collection("barbers").
                 document(barber.getId()).collection("reserves").document(reserveBarber.getId()).set(reserveBarber);
@@ -100,7 +125,6 @@ public class CitaActivity extends AppCompatActivity {
 
 
     private void agendarCita(View view) {
-
         showDatePicker(date->{
             citaTV.setText(formatDate(date));
         });

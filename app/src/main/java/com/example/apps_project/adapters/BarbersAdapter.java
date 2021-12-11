@@ -26,9 +26,7 @@ public class BarbersAdapter extends  RecyclerView.Adapter<BarbersView>{
 
 
     public BarbersAdapter() {
-
         barbers = new ArrayList<>();
-
     }
 
     @NonNull
@@ -47,11 +45,13 @@ public class BarbersAdapter extends  RecyclerView.Adapter<BarbersView>{
         skeleton.setBarber(barber);
         skeleton.getNameTV().setText(barber.getName());
         skeleton.getRateTV().setText(barber.getRate());
-        FirebaseStorage.getInstance().getReference().child("barbers").child(barber.getUrlImage()).getDownloadUrl().addOnSuccessListener(
-                url->{
-                    Glide.with(skeleton.getImageBarber()).load(url).into(skeleton.getImageBarber());
-                }
-        );
+        if(barber.getUrlImage()!= null && !barber.getUrlImage().equals("")){
+            FirebaseStorage.getInstance().getReference().child("barbers").child(barber.getUrlImage()).getDownloadUrl().addOnSuccessListener(
+                    url->{
+                        Glide.with(skeleton.getImageBarber()).load(url).into(skeleton.getImageBarber());
+                    }
+            );
+        }
         skeleton.getImageBarber().setOnClickListener(
 
                 v->{
