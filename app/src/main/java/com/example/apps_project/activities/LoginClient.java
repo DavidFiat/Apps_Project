@@ -12,14 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apps_project.R;
-import com.example.apps_project.fragments.ProfileFragment;
 import com.example.apps_project.model.Client;
 import com.example.apps_project.model.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.LoginStatusCallback;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;

@@ -1,6 +1,5 @@
 package com.example.apps_project.fragments;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,19 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.apps_project.R;
-import com.example.apps_project.activities.LoginClient;
 import com.example.apps_project.activities.RolActivity;
-import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Barbershop;
 import com.example.apps_project.model.Client;
-import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragmentClient extends Fragment {
 
 
     private Button exitBtn;
@@ -30,7 +25,7 @@ public class ProfileFragment extends Fragment {
     private Barbershop barbershop;
     private TextView nameTV, emailTV;
 
-    public ProfileFragment() {
+    public ProfileFragmentClient() {
         // Required empty public constructor
     }
 
@@ -41,8 +36,8 @@ public class ProfileFragment extends Fragment {
         this.barbershop = barbershop;
     }
 
-    public static ProfileFragment newInstance() {
-        ProfileFragment fragment = new ProfileFragment();
+    public static ProfileFragmentClient newInstance() {
+        ProfileFragmentClient fragment = new ProfileFragmentClient();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

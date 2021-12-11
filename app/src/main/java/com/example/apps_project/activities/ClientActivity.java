@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 import com.example.apps_project.R;
 import com.example.apps_project.fragments.BarbershopsFragment;
-import com.example.apps_project.fragments.ProfileFragment;
+import com.example.apps_project.fragments.ProfileFragmentClient;
 import com.example.apps_project.fragments.ReserveFragment;
 import com.example.apps_project.model.Client;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,7 +21,7 @@ public class ClientActivity extends AppCompatActivity {
     private Client client;
     private BottomNavigationView navigator;
     private BarbershopsFragment barbershopsFragment;
-    private ProfileFragment profileFragment;
+    private ProfileFragmentClient profileFragmentClient;
     private ReserveFragment reserveFragment;
 
     @Override
@@ -31,7 +31,7 @@ public class ClientActivity extends AppCompatActivity {
 
         navigator = findViewById(R.id.navigator);
         barbershopsFragment = BarbershopsFragment.newInstance();
-        profileFragment = ProfileFragment.newInstance();
+        profileFragmentClient = ProfileFragmentClient.newInstance();
         reserveFragment = ReserveFragment.newInstance();
 
 
@@ -44,7 +44,7 @@ public class ClientActivity extends AppCompatActivity {
                     } else if(menuItem.getItemId() == R.id.reserveitem){
                         showFragment(reserveFragment);
                     } else if(menuItem.getItemId() == R.id.perfilitem){
-                        showFragment(profileFragment);
+                        showFragment(profileFragmentClient);
                     }
                     return true;
                 }
@@ -53,7 +53,7 @@ public class ClientActivity extends AppCompatActivity {
         FirebaseFirestore.getInstance().collection("clients").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(
             document -> {
                 client = document.toObject(Client.class);
-                profileFragment.setClient(client);
+                profileFragmentClient.setClient(client);
                 reserveFragment.setClient(client);
             }
         );

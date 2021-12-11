@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.apps_project.R;
 import com.example.apps_project.fragments.BarbersFragment;
 import com.example.apps_project.fragments.NewBarberFragment;
-import com.example.apps_project.fragments.ProfileFragment;
+import com.example.apps_project.fragments.ProfileFragmentClient;
 import com.example.apps_project.model.Barbershop;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,7 +21,7 @@ public class BarbershopActivity extends AppCompatActivity {
     private Barbershop barbershop;
     private BottomNavigationView navigatorbarbershop;
     private BarbersFragment barbersFragment;
-    private ProfileFragment profileFragment;
+    private ProfileFragmentClient profileFragmentClient;
     private NewBarberFragment newBarberFragment;
 
     @Override
@@ -31,7 +31,7 @@ public class BarbershopActivity extends AppCompatActivity {
 
         navigatorbarbershop = findViewById(R.id.navigatorbarbershop);
         barbersFragment = BarbersFragment.newInstance();
-        profileFragment = ProfileFragment.newInstance();
+        profileFragmentClient = ProfileFragmentClient.newInstance();
         newBarberFragment = newBarberFragment.newInstance();
 
 
@@ -44,7 +44,7 @@ public class BarbershopActivity extends AppCompatActivity {
                     } else if(menuItem.getItemId() == R.id.newbarberitem){
                         showFragment(newBarberFragment);
                     } else if(menuItem.getItemId() == R.id.perfilitem){
-                        showFragment(profileFragment);
+                        showFragment(profileFragmentClient);
                     }
                     return true;
                 }
@@ -53,7 +53,7 @@ public class BarbershopActivity extends AppCompatActivity {
         FirebaseFirestore.getInstance().collection("barbershops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(
                 document -> {
                     barbershop = document.toObject(Barbershop.class);
-                    profileFragment.setBarbershop(barbershop);
+                    profileFragmentClient.setBarbershop(barbershop);
                 }
         );
     }
