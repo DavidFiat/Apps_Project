@@ -54,6 +54,55 @@ public class BarbershopActivity extends AppCompatActivity {
                 document -> {
                     barbershop = document.toObject(Barbershop.class);
                     profileBarbershopFragment.setBarbershop(barbershop);
+                    barbersFragment.setBarbershop(barbershop);
+
+                }
+        );
+    }
+
+    public void showFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragmentContainer, fragment);
+        transaction.commit();
+    }
+/*
+    private Barbershop barbershop;
+    private BottomNavigationView navigatorbarbershop;
+    private BarbersFragment barbersFragment;
+    private ProfileBarbershopFragment profileBarbershopFragment;
+    private NewBarberFragment newBarberFragment;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_barbershop);
+
+        navigatorbarbershop = findViewById(R.id.navigatorbarbershop);
+        barbersFragment = BarbersFragment.newInstance();
+        profileBarbershopFragment = ProfileBarbershopFragment.newInstance();
+        newBarberFragment = newBarberFragment.newInstance();
+
+
+        showFragment(barbersFragment);
+
+        navigatorbarbershop.setOnItemSelectedListener(
+                menuItem -> {
+                    if(menuItem.getItemId() == R.id.barbersitem){
+                        showFragment(barbersFragment);
+                    } else if(menuItem.getItemId() == R.id.newbarberitem){
+                        showFragment(newBarberFragment);
+                    } else if(menuItem.getItemId() == R.id.perfilitem){
+                        showFragment(profileBarbershopFragment);
+                    }
+                    return true;
+                }
+        );
+
+        FirebaseFirestore.getInstance().collection("barbershops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(
+                document -> {
+                    barbershop = document.toObject(Barbershop.class);
+                    profileBarbershopFragment.setBarbershop(barbershop);
                 }
         );
     }
@@ -65,4 +114,6 @@ public class BarbershopActivity extends AppCompatActivity {
         transaction.replace(R.id.fragmentContainer, fragment);
         transaction.commit();
     }
+
+ */
 }
