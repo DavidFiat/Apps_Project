@@ -45,6 +45,8 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
     private Button continueBtn;
     private TextView linkImg;
 
+    private String idBarber;
+
 
 
     private ActivityResultLauncher<Intent> cameraLauncher;
@@ -53,6 +55,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
     public NewBarberFragment() {
         // Required empty public constructor
         barber = new Barber("1","barber","5.0","barber@mail.com","");
+        idBarber = UUID.randomUUID().toString();
     }
 
 
@@ -83,9 +86,13 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
         photoBarber = view.findViewById(R.id.photoBarber);
         continueBtn.setOnClickListener(this::saveBarber);
 
-        barber.setId(UUID.randomUUID().toString());
+
+        barber.setId(idBarber);
         barber.setName(nameTV.toString());
         barber.setEmail(emailTV.toString());
+
+        //Toast.makeText(getContext(),"SUPUESTO NOMBRE BARBER: " + barber.getName(), Toast.LENGTH_LONG).show();
+
 
         cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onCameraResult);
         galleryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onGalleryResult);
@@ -116,7 +123,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
             Toast.makeText(getContext(),"Operación cancelada", Toast.LENGTH_LONG).show();
         }
     }
-
+/*
     private void register(View view) {
         String name = nameTV.getText().toString();
         String email = emailTV.getText().toString();
@@ -144,7 +151,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
                                 firetask->{
                                     finish();
                                 }
-                        );*/
+                        );/
 
 
                     }
@@ -157,6 +164,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
             Toast.makeText(view.getContext(), "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
         }
     }
+    */
 
     public void openChoice(View view){
         ImageOption dialog = ImageOption.newInstance();
@@ -197,8 +205,8 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
     }
 
     private void saveBarber(View view){
-        String idBarber = UUID.randomUUID().toString();
-        Barber saveBarber = new Barber(idBarber,barber.getName(),"5.0",barber.getEmail(),barber.getUrlImage());
+        String idBarber1 = idBarber;
+        Barber saveBarber = new Barber(idBarber1,barber.getName(),"5.0",barber.getEmail(),barber.getUrlImage());
         FirebaseUser fbuser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore.getInstance().collection("barbershops").document(fbuser.getUid()).collection("barbers").document(barber.getId()).set(saveBarber);
         /*getActivity().runOnUiThread(()->{
