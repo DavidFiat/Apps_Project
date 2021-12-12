@@ -9,13 +9,12 @@ public class Barber implements Serializable {
     private String rate;
     private String email;
     private String urlImage;
-    private String barberShopId;
 
 
     public Barber() {
     }
 
-    public Barber(String id, String name, String rate,String email, String urlImage/**,String barberShopId*/) {
+    public Barber(String id, String name, String rate,String email, String urlImage) {
         this.id = id;
         this.name = name;
         this.rate = rate;
@@ -58,11 +57,5 @@ public class Barber implements Serializable {
         this.urlImage = urlImage;
     }
 
-    public String getBarberShopId() {
-        return barberShopId;
-    }
 
-    public void setBarberShopId(String barberShopId) {
-        this.barberShopId = barberShopId;
-    }
 }

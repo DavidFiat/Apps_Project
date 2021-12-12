@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apps_Project">
         <activity
+            android:name=".activities.RatesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.RegisterBarber"
             android:exported="false" />
         <activity

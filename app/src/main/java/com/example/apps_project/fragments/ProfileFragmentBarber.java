@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.apps_project.R;
+import com.example.apps_project.activities.BarberActivity;
+import com.example.apps_project.activities.RegisterBarber;
 import com.example.apps_project.activities.RolActivity;
 import com.example.apps_project.model.Barber;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,6 +55,8 @@ public class ProfileFragmentBarber extends Fragment {
         pointTV.setText(barber.getRate());
         nameTV.setText(barber.getName());
         exitBtn.setOnClickListener(this::exitBarber);
+        Intent in= new Intent(view.getContext(), RegisterBarber.class);
+        startActivity(in);
         return view;
     }
 

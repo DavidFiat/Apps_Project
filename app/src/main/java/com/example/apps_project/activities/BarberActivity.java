@@ -4,7 +4,10 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.apps_project.R;
+import com.example.apps_project.fragments.BarbershopsFragment;
 import com.example.apps_project.fragments.ProfileFragmentBarber;
+import com.example.apps_project.fragments.ReserveFragment;
 import com.example.apps_project.model.Barber;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
