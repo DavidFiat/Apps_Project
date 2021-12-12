@@ -46,7 +46,8 @@ public class BarberActivity extends AppCompatActivity {
                 }
         );
 
-        FirebaseFirestore.getInstance().collection("barbershops").document(barber.getBarberShopId()).collection("barbers").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(
+        FirebaseFirestore.getInstance().collection("barbershops").document(barber.getBarberShopId()).
+                collection("barbers").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(
                 document -> {
                     barber = document.toObject(Barber.class);
                     profileFragmentBarber.setBarber(barber);

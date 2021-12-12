@@ -103,9 +103,9 @@ public class RegisterBarber extends AppCompatActivity {
                         //2. Registrar al usuario en la base de datos
                         FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
                         User user = new User(fbUser.getUid(), "barber");
-                        Barber barber = new Barber(fbUser.getUid(), name, "", email, "Foto", "");
+                        Barber barber = new Barber(fbUser.getUid(), name, "", email, "");
                         FirebaseFirestore.getInstance().collection("users").document(fbUser.getUid()).set(user);
-                        FirebaseFirestore.getInstance().collection("barbers").document(fbUser.getUid()).set(barber).addOnSuccessListener(
+                        FirebaseFirestore.getInstance().collection("barbershops").document(barbershop.getId()).collection("barbers").document(fbUser.getUid()).set(barber).addOnSuccessListener(
                                 firetask -> {
                                     finish();
                                 }
