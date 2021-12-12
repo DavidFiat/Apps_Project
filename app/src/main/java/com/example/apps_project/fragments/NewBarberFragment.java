@@ -1,6 +1,8 @@
 package com.example.apps_project.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -9,10 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -32,6 +37,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
 
 
     private EditText nameTV, emailTV, passwordET, repasswordET;
+    private ImageView photoBarber;
     private Barbershop barbershop; //Se supone que es la barbería que está asociada a este nuevo barbero
     private Barber barber;
     private File file;
@@ -45,6 +51,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
 
     public NewBarberFragment() {
         // Required empty public constructor
+        barber = new Barber("1","barber","5.0","barber@ail.com","");
     }
 
 
@@ -61,6 +68,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_new_barber, container, false);
         linkImg = view.findViewById(R.id.linkImg);
 
@@ -71,9 +79,39 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
         nameTV = view.findViewById(R.id.nameTV);
         passwordET = view.findViewById(R.id.passwordET);
         repasswordET = view.findViewById(R.id.repasswordET);
+        photoBarber = view.findViewById(R.id.photoBarber);
         continueBtn.setOnClickListener(this::register);
 
+
+
+        cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onCameraResult);
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onGalleryResult);
+
+
         return view;
+    }
+
+    public void onGalleryResult(ActivityResult result){
+        if(result.getResultCode()==getActivity().RESULT_OK){
+            Uri uri = result.getData().getData();
+            photoBarber.setImageURI(uri);
+            barber.setUrlImage(UtilDomi.getPath(getContext(),uri));
+        }
+    }
+
+    public void onCameraResult(ActivityResult result){
+        if(result.getResultCode()==getActivity().RESULT_OK){
+
+            //Foto completa
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
+            Bitmap thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth()/4,bitmap.getHeight()/4,true);
+            photoBarber.setImageBitmap(thumbnail);
+            Uri uri = FileProvider.getUriForFile(getContext(),getContext().getPackageName(),file);
+            barber.setUrlImage(file.getPath());
+
+        }else if(result.getResultCode()==getActivity().RESULT_CANCELED){
+            Toast.makeText(getContext(),"Operación cancelada", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void register(View view) {
@@ -89,7 +127,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
                         //2. Registrar al usuario en la base de datos
                         FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
                         User user = new User(fbUser.getUid(), "client");
-                        Barber barber = new Barber(fbUser.getUid(), name, "0", email, "", barbershop.getId());
+                        Barber barber = new Barber(fbUser.getUid(), name, "0", email, "");
                         FirebaseFirestore.getInstance().collection("users").document(fbUser.getUid()).set(user);
                         //Estamos dudando de este, por eso le vamos a preguntar al profe por el de abajo
                         FirebaseFirestore.getInstance().collection("barbers").document(fbUser.getUid()).set(barber).addOnSuccessListener(
@@ -142,8 +180,10 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         file = new File(getContext().getExternalFilesDir(null)+"/photo.png");
         Uri uri = FileProvider.getUriForFile(getContext(),getContext().getPackageName(),file);
+        Toast.makeText(getContext(),"Seleccionaste camara", Toast.LENGTH_LONG).show();
         intent.putExtra(MediaStore.EXTRA_OUTPUT,uri);
         cameraLauncher.launch(intent);
+
     }
 
     private void openGallery(View view) {
