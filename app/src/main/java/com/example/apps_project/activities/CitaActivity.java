@@ -116,7 +116,7 @@ public class CitaActivity extends AppCompatActivity {
 
         });
 
-        Reserve reserve = new Reserve(UUID.randomUUID().toString(),barber.getName(),barber.getUrlImage(),citaTV.getText().toString());
+        Reserve reserve = new Reserve(UUID.randomUUID().toString(),barber.getName(),barber.getUrlImage(),citaTV.getText().toString(),barbershop.getId(),barber.getId());
         FirebaseFirestore.getInstance().collection("clients").document(client.getId()).collection("reserves").document(reserve.getId()).set(reserve);
         Intent intent= new Intent(view.getContext(),ClientActivity.class);
         startActivity(intent);

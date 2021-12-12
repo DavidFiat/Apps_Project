@@ -1,6 +1,8 @@
 package com.example.apps_project.model;
 
-public class Client {
+import java.io.Serializable;
+
+public class Client implements Serializable {
 
     private String id;
     private String name;

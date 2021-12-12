@@ -1,8 +1,12 @@
 package com.example.apps_project.model;
 
-public class Reserve {
+import java.io.Serializable;
+
+public class Reserve implements Serializable {
 
     private String id;
+    private String idBarberShop;
+    private String idBarbero;
     private String name;
     private String urlImageBarber;
     private String date;
@@ -10,11 +14,13 @@ public class Reserve {
     public Reserve() {
     }
 
-    public Reserve(String id, String name, String urlImageBarber, String date) {
+    public Reserve(String id, String name, String urlImageBarber, String date,String idBarberShop,String idBarbero) {
         this.id = id;
         this.name = name;
         this.urlImageBarber = urlImageBarber;
         this.date = date;
+        this.idBarbero=idBarbero;
+        this.idBarberShop=idBarberShop;
     }
 
     public String getId() {
@@ -47,5 +53,13 @@ public class Reserve {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getIdBarberShop() {
+        return idBarberShop;
+    }
+
+    public String getIdBarbero() {
+        return idBarbero;
     }
 }

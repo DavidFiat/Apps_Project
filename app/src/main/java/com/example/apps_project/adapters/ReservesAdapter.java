@@ -25,6 +25,9 @@ public class ReservesAdapter extends RecyclerView.Adapter<ReserveView>{
 
     private ArrayList<Reserve> reserves;
 
+    private OnFeedBack onFeedBack;
+
+
     public ReservesAdapter() {
         reserves = new ArrayList<>();
     }
@@ -44,6 +47,11 @@ public class ReservesAdapter extends RecyclerView.Adapter<ReserveView>{
         skeleton.setReserve(reserve);
         skeleton.getNameTV().setText(reserve.getName());
         skeleton.getDateTV().setText(reserve.getDate());
+        skeleton.getRateBtn().setOnClickListener(
+                v->{
+                    onFeedBack.onFeedBack(reserve);
+                }
+        );
         FirebaseStorage.getInstance().getReference().child("barbers").child(reserve.getUrlImageBarber()).getDownloadUrl().addOnSuccessListener(
                 url->{
                     Glide.with(skeleton.getImageBarber()).load(url).into(skeleton.getImageBarber());
@@ -77,5 +85,15 @@ public class ReservesAdapter extends RecyclerView.Adapter<ReserveView>{
     public void addReserve(Reserve reserve){
         reserves.add(reserve);
         notifyItemInserted(reserves.size()-1);
+    }
+
+    public interface OnFeedBack{
+
+         void onFeedBack(Reserve reserve);
+
+    }
+
+    public void setOnFeedBack(OnFeedBack onFeedBack) {
+        this.onFeedBack = onFeedBack;
     }
 }
