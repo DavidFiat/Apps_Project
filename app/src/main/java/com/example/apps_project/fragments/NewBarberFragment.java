@@ -32,6 +32,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
+import java.util.UUID;
 
 public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceListener{
 
@@ -51,7 +52,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
 
     public NewBarberFragment() {
         // Required empty public constructor
-        barber = new Barber("1","barber","5.0","barber@ail.com","");
+        barber = new Barber("1","barber","5.0","barber@mail.com","");
     }
 
 
@@ -80,9 +81,11 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
         passwordET = view.findViewById(R.id.passwordET);
         repasswordET = view.findViewById(R.id.repasswordET);
         photoBarber = view.findViewById(R.id.photoBarber);
-        continueBtn.setOnClickListener(this::register);
+        continueBtn.setOnClickListener(this::saveBarber);
 
-
+        barber.setId(UUID.randomUUID().toString());
+        barber.setName(nameTV.toString());
+        barber.setEmail(emailTV.toString());
 
         cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onCameraResult);
         galleryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onGalleryResult);
@@ -126,7 +129,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
                     task->{
                         //2. Registrar al usuario en la base de datos
                         FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
-                        User user = new User(fbUser.getUid(), "client");
+                        User user = new User(fbUser.getUid(), "barber");
                         Barber barber = new Barber(fbUser.getUid(), name, "0", email, "");
                         FirebaseFirestore.getInstance().collection("users").document(fbUser.getUid()).set(user);
                         //Estamos dudando de este, por eso le vamos a preguntar al profe por el de abajo
@@ -142,6 +145,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
                                     finish();
                                 }
                         );*/
+
 
                     }
             ).addOnFailureListener(
@@ -192,5 +196,45 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
         galleryLauncher.launch(intent);
     }
 
-    //Borrar todo lo relacionado con la imagen del barbero.
+    private void saveBarber(View view){
+        String idBarber = UUID.randomUUID().toString();
+        Barber saveBarber = new Barber(idBarber,barber.getName(),"5.0",barber.getEmail(),barber.getUrlImage());
+        FirebaseUser fbuser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore.getInstance().collection("barbershops").document(fbuser.getUid()).collection("barbers").document(barber.getId()).set(saveBarber);
+        /*getActivity().runOnUiThread(()->{
+            Toast.makeText(view.getContext(),"Se ha agregado el barbero exitosamente!",Toast.LENGTH_LONG).show();
+
+        });
+
+         */
+
+        String name = nameTV.getText().toString();
+        String email = emailTV.getText().toString();
+        String password = passwordET.getText().toString();
+        String repassword = repasswordET.getText().toString();
+
+        if(password.equals(repassword)){
+            //1. Registrarse en la db de auth
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnSuccessListener(
+                    task->{
+                        //2. Registrar al usuario en la base de datos
+                        FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
+                        User user = new User(idBarber, "barber");
+                        //Barber barber1 = new Barber(fbUser.getUid(), name, "0", email, );
+                        FirebaseFirestore.getInstance().collection("users").document(idBarber).set(user);
+                        Toast.makeText(view.getContext(),"Intento guardar en user y password",Toast.LENGTH_LONG).show();
+
+                    }
+            ).addOnFailureListener(
+                    error->{
+                        Toast.makeText(view.getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+            );
+        } else{
+            Toast.makeText(view.getContext(), "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
+        }
+
+
+    }
+
 }

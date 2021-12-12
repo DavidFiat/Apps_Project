@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class RegisterBarbershop extends AppCompatActivity {
     private EditText nameET, emailET, passwordET, repasswordET;
     private Button continueBtn;
+    private Barbershop barbershop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +47,9 @@ public class RegisterBarbershop extends AppCompatActivity {
                         //2. Registrar barbería en la base de datos
                         FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
                         User user = new User(fbUser.getUid(), "barbershop");
-                        Barbershop barbershop = new Barbershop(fbUser.getUid(), name,"", email,"");
+                        Barbershop barbershop1 = new Barbershop(fbUser.getUid(), name,"", email,"5.0");
                         FirebaseFirestore.getInstance().collection("users").document(fbUser.getUid()).set(user);
-                        FirebaseFirestore.getInstance().collection("barbershops").document(fbUser.getUid()).set(barbershop).addOnSuccessListener(
+                        FirebaseFirestore.getInstance().collection("barbershops").document(fbUser.getUid()).set(barbershop1).addOnSuccessListener(
                                 firetask->{
                                     finish();
                                 }
