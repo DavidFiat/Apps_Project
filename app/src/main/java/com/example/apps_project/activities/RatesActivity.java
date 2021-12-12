@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.example.apps_project.R;
 import com.example.apps_project.adapters.RatesAdapter;
@@ -22,6 +23,7 @@ public class RatesActivity extends AppCompatActivity {
     private RecyclerView ratesRecyclerView;
     private LinearLayoutManager manager;
     private RatesAdapter adapter;
+    private Button returnBtn;
 
 
     @Override
@@ -29,21 +31,26 @@ public class RatesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rates);
         ratesRecyclerView = findViewById(R.id.ratesRecyclerView);
+        returnBtn = findViewById(R.id.returnBtn);
+        returnBtn.setOnClickListener(
+                view -> {
+                    finish();
+                }
+        );
         adapter = new RatesAdapter();
         manager = new LinearLayoutManager(this);
-
         ratesRecyclerView.setLayoutManager(manager);
         ratesRecyclerView.setAdapter(adapter);
         String type = (String) getIntent().getExtras().get("type");
         barbershop = (Barbershop) getIntent().getExtras().get("barbershop");
-        if(type.equals("barber")){
+        if (type.equals("barber")) {
             barber = (Barber) getIntent().getExtras().get("barber");
             FirebaseFirestore.getInstance().collection("barbershops").document(barbershop.getId()).collection("barbers").document(barber.getId()).collection("rates").get().addOnCompleteListener(
                     task -> {
                         this.createList(task);
                     }
             );
-        }else{
+        } else {
             FirebaseFirestore.getInstance().collection("barbershops").document(barbershop.getId()).collection("rates").get().addOnCompleteListener(
                     task -> {
                         this.createList(task);
@@ -53,12 +60,11 @@ public class RatesActivity extends AppCompatActivity {
         }
 
 
-
     }
 
     private void createList(Task<QuerySnapshot> task) {
         adapter.clear();
-        for (DocumentSnapshot doc: task.getResult()) {
+        for (DocumentSnapshot doc : task.getResult()) {
             Rate rate = doc.toObject(Rate.class);
             adapter.addRate(rate);
         }
