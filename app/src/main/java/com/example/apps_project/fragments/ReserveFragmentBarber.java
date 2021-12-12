@@ -10,29 +10,30 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apps_project.R;
+import com.example.apps_project.adapters.ReservesAdapter;
 import com.example.apps_project.model.Barber;
-import com.example.apps_project.model.Client;
+import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Reserve;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ReserveFragmentBarber extends Fragment {
 
-    private RecyclerView reservesRecyvlerBarber;
+    private RecyclerView reservesRecyclerBarber;
     private LinearLayoutManager managerBarber;
     private ReservesAdapter adapterBarber;
-    private Client client;
+    private Barber barber;
 
-    public ReserveFragment() {
+    public ReserveFragmentBarber() {
         adapterBarber = new ReservesAdapter();
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setBarber(Barber barber) {
+        this.barber = barber;
     }
 
-    public static ReserveFragment newInstance() {
-        ReserveFragment fragment = new ReserveFragment();
+    public static ReserveFragmentBarber newInstance() {
+        ReserveFragmentBarber fragment = new ReserveFragmentBarber();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -42,19 +43,19 @@ public class ReserveFragmentBarber extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_reserve, container, false);
+        View view = inflater.inflate(R.layout.fragment_reserve_barber, container, false);
 
-        reservesRecyvlerBarber = view.findViewById(R.id.reservesRecyvlerBarber);
+        reservesRecyclerBarber = view.findViewById(R.id.reservesRecyclerBarber);
         managerBarber = new LinearLayoutManager(view.getContext());
-        reservesRecyvlerBarber.setLayoutManager(managerBarber);
-        reservesRecyvlerBarber.setAdapter(adapterBarber);
-        reservesRecyvlerBarber.setHasFixedSize(true);
+        reservesRecyclerBarber.setLayoutManager(managerBarber);
+        reservesRecyclerBarber.setAdapter(adapterBarber);
+        reservesRecyclerBarber.setHasFixedSize(true);
         getReserves();
         return view;
     }
 
     private void getReserves() {
-        FirebaseFirestore.getInstance().collection("clients").document(client.getId()).collection("reserves").get().addOnCompleteListener(
+        FirebaseFirestore.getInstance().collection("barbershops").document(barber.getBarberShopId()).collection("barbers").document(barber.getId()).collection("reserves").get().addOnCompleteListener(
                 task ->{
                     adapterBarber.clear();
                     for(DocumentSnapshot doc : task.getResult()){

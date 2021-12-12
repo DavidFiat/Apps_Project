@@ -73,7 +73,7 @@ public class NewBarberFragment extends Fragment {
                         //2. Registrar al usuario en la base de datos
                         FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
                         User user = new User(fbUser.getUid(), "client");
-                        Barber barber = new Barber(fbUser.getUid(), name, "0", email, "");
+                        Barber barber = new Barber(fbUser.getUid(), name, "0", email, "", barbershop.getId());
                         FirebaseFirestore.getInstance().collection("users").document(fbUser.getUid()).set(user);
                         //Estamos dudando de este, por eso le vamos a preguntar al profe por el de abajo
                         FirebaseFirestore.getInstance().collection("barbers").document(fbUser.getUid()).set(barber).addOnSuccessListener(
