@@ -63,6 +63,7 @@
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_login_barbershop.xml" value="0.22" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_login_client.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_main.xml" value="0.17527173913043478" />
+        <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_rates.xml" value="0.1852355072463768" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_register_barber.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_register_barbershop.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/activity_register_client.xml" value="0.17481884057971014" />
@@ -74,11 +75,12 @@
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_image_option.xml" value="0.15670289855072464" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_new_barber.xml" value="0.33" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_profile.xml" value="0.19429347826086957" />
-        <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_profile_barbershop.xml" value="0.16" />
+        <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_profile_barbershop.xml" value="0.67" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_reserve.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_to_add_publication.xml" value="0.18" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_to_profile.xml" value="0.33" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/fragment_to_update_profile.xml" value="0.22" />
+        <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/layout/rate_row.xml" value="0.25" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/menu/barbershop_menu.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/estudiante/Desktop/proy appsmoviles/Apps_Project/app/src/main/res/menu/home_menu.xml" value="0.20416666666666666" />
 <<<<<<< HEAD

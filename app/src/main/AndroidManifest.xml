@@ -20,6 +20,9 @@
             android:name=".activities.RatesActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.RatesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.RegisterBarber"
             android:exported="false" />
         <activity

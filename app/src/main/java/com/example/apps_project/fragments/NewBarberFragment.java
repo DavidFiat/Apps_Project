@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,11 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.apps_project.R;
 import com.example.apps_project.activities.RolActivity;
 import com.example.apps_project.model.Barber;
@@ -30,6 +33,8 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.util.UUID;
@@ -46,7 +51,6 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
     private TextView linkImg;
 
     private String idBarber;
-
 
 
     private ActivityResultLauncher<Intent> cameraLauncher;
@@ -88,10 +92,10 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
 
 
         barber.setId(idBarber);
-        barber.setName(nameTV.toString());
-        barber.setEmail(emailTV.toString());
+        barber.setName(nameTV.getText().toString());
+        barber.setEmail(emailTV.getText().toString());
 
-        //Toast.makeText(getContext(),"SUPUESTO NOMBRE BARBER: " + barber.getName(), Toast.LENGTH_LONG).show();
+
 
 
         cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onCameraResult);
@@ -107,6 +111,9 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
             photoBarber.setImageURI(uri);
             barber.setUrlImage(UtilDomi.getPath(getContext(),uri));
         }
+
+
+
     }
 
     public void onCameraResult(ActivityResult result){
@@ -123,48 +130,6 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
             Toast.makeText(getContext(),"Operación cancelada", Toast.LENGTH_LONG).show();
         }
     }
-/*
-    private void register(View view) {
-        String name = nameTV.getText().toString();
-        String email = emailTV.getText().toString();
-        String password = passwordET.getText().toString();
-        String repassword = repasswordET.getText().toString();
-
-        if(password.equals(repassword)){
-            //1. Registrarse en la db de auth
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnSuccessListener(
-                    task->{
-                        //2. Registrar al usuario en la base de datos
-                        FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
-                        User user = new User(fbUser.getUid(), "barber");
-                        Barber barber = new Barber(fbUser.getUid(), name, "0", email, "");
-                        FirebaseFirestore.getInstance().collection("users").document(fbUser.getUid()).set(user);
-                        //Estamos dudando de este, por eso le vamos a preguntar al profe por el de abajo
-                        FirebaseFirestore.getInstance().collection("barbers").document(fbUser.getUid()).set(barber).addOnSuccessListener(
-                                firetask->{
-                                    getActivity().finish();
-                                }
-                        );
-
-                        //Preguntarle al profe si esto sirve - para guardar un barbero en una barbería
-                        /*FirebaseFirestore.getInstance().collection("barbershops").document(fbUser.getUid()).collection("barbers").document((fbUser.getUid())).set(barber).addOnSuccessListener(
-                                firetask->{
-                                    finish();
-                                }
-                        );/
-
-
-                    }
-            ).addOnFailureListener(
-                    error->{
-                        Toast.makeText(view.getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-            );
-        } else{
-            Toast.makeText(view.getContext(), "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
-        }
-    }
-    */
 
     public void openChoice(View view){
         ImageOption dialog = ImageOption.newInstance();
@@ -205,22 +170,13 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
     }
 
     private void saveBarber(View view){
-        String idBarber1 = idBarber;
-        Barber saveBarber = new Barber(idBarber1,barber.getName(),"5.0",barber.getEmail(),barber.getUrlImage());
-        FirebaseUser fbuser = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseFirestore.getInstance().collection("barbershops").document(fbuser.getUid()).collection("barbers").document(barber.getId()).set(saveBarber);
-        /*getActivity().runOnUiThread(()->{
-            Toast.makeText(view.getContext(),"Se ha agregado el barbero exitosamente!",Toast.LENGTH_LONG).show();
-
-        });
-
-         */
 
         String name = nameTV.getText().toString();
         String email = emailTV.getText().toString();
         String password = passwordET.getText().toString();
         String repassword = repasswordET.getText().toString();
 
+        Log.i("Nombre barbero: ", "nombre barbero " + name);
         if(password.equals(repassword)){
             //1. Registrarse en la db de auth
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnSuccessListener(
@@ -230,7 +186,7 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
                         User user = new User(idBarber, "barber");
                         //Barber barber1 = new Barber(fbUser.getUid(), name, "0", email, );
                         FirebaseFirestore.getInstance().collection("users").document(idBarber).set(user);
-                        Toast.makeText(view.getContext(),"Intento guardar en user y password",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(view.getContext(),"Intento guardar en user y password",Toast.LENGTH_LONG).show();
 
                     }
             ).addOnFailureListener(
@@ -238,6 +194,12 @@ public class NewBarberFragment extends Fragment implements ImageOption.OnChoiceL
                         Toast.makeText(view.getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
             );
+
+            String idBarber1 = idBarber;
+            Barber saveBarber = new Barber(idBarber1,name,"5.0",email,barber.getUrlImage());
+            FirebaseUser fbuser = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseFirestore.getInstance().collection("barbershops").document(fbuser.getUid()).collection("barbers").document(barber.getId()).set(saveBarber);
+            Toast.makeText(view.getContext(),"Se guardó el barbero exitosamente!!",Toast.LENGTH_LONG).show();
         } else{
             Toast.makeText(view.getContext(), "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
         }

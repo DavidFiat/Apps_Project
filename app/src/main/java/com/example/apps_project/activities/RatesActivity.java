@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.Button;
-
 import com.example.apps_project.R;
 import com.example.apps_project.adapters.RatesAdapter;
 import com.example.apps_project.model.*;
@@ -26,6 +25,7 @@ public class RatesActivity extends AppCompatActivity {
     private Button returnBtn;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,24 +39,26 @@ public class RatesActivity extends AppCompatActivity {
         );
         adapter = new RatesAdapter();
         manager = new LinearLayoutManager(this);
+
+
         ratesRecyclerView.setLayoutManager(manager);
         ratesRecyclerView.setAdapter(adapter);
         String type = (String) getIntent().getExtras().get("type");
         barbershop = (Barbershop) getIntent().getExtras().get("barbershop");
+
         if (type.equals("barber")) {
-            barber = (Barber) getIntent().getExtras().get("barber");
+         barber = (Barber) getIntent().getExtras().get("barber");
             FirebaseFirestore.getInstance().collection("barbershops").document(barbershop.getId()).collection("barbers").document(barber.getId()).collection("rates").get().addOnCompleteListener(
                     task -> {
                         this.createList(task);
                     }
             );
         } else {
-            FirebaseFirestore.getInstance().collection("barbershops").document(barbershop.getId()).collection("rates").get().addOnCompleteListener(
+           FirebaseFirestore.getInstance().collection("barbershops").document(barbershop.getId()).collection("rates").get().addOnCompleteListener(
                     task -> {
                         this.createList(task);
                     }
             );
-
         }
 
 
@@ -64,6 +66,7 @@ public class RatesActivity extends AppCompatActivity {
 
     private void createList(Task<QuerySnapshot> task) {
         adapter.clear();
+
         for (DocumentSnapshot doc : task.getResult()) {
             Rate rate = doc.toObject(Rate.class);
             adapter.addRate(rate);

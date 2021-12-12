@@ -71,11 +71,12 @@
 
         <TextView
             android:id="@+id/emailBarbershopTV"
-            android:layout_width="61dp"
+            android:layout_width="173dp"
             android:layout_height="17dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/barbershops_container"
             android:text="TextView"
+            android:textAlignment="center"
             android:textColor="@color/fondoPantalla"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -92,6 +93,18 @@
             android:text="Cerrar Sesión"
             android:textColor="@color/fondoPantalla"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailBarbershopTV" />
+
+        <Button
+            android:id="@+id/ratesBarbershopBtn"
+            android:layout_width="192dp"
+            android:layout_height="44dp"
+            android:background="@color/fondoPantalla"
+            android:text="VER CALIFICACIONES"
+            android:textColor="@color/fondoBarberias"
+            app:layout_constraintBottom_toTopOf="@+id/exitBarbershopBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailBarbershopTV" />
