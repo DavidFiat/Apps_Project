@@ -91,4 +91,6 @@ public class BarbersActivity extends AppCompatActivity implements BarbersAdapter
         startActivity(intent);
 
     }
+
+
 }

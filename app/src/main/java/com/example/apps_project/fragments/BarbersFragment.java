@@ -69,4 +69,5 @@ public class BarbersFragment extends Fragment implements  BarbershopsAdapter.OnL
         i.putExtra("barbershop",barbershop);
         startActivity(i);
     }
+
 }

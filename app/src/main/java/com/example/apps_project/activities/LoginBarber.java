@@ -106,7 +106,7 @@ public class LoginBarber extends AppCompatActivity {
 
         FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
         User user = new User(fireUser.getUid(),"barber");
-        Barber barber = new Barber(""+fireUser.getUid(),""+fireUser.getDisplayName(),0+"",""+fireUser.getEmail(),"");
+        Barber barber = new Barber(""+fireUser.getUid(),""+fireUser.getDisplayName(),0+"",""+fireUser.getEmail(),"","");
         FirebaseFirestore.getInstance().collection("users").document(user.getId()).set(user);
         FirebaseFirestore.getInstance().collection("barbers").document(user.getId()).set(barber);
     }
