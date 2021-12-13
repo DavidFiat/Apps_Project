@@ -71,11 +71,13 @@ public class CitaActivity extends AppCompatActivity {
         citaTV =findViewById(R.id.citaTV);
         agendarBtn=findViewById(R.id.agendarBtn);
 
-        FirebaseStorage.getInstance().getReference().child("barbers").child(barber.getUrlImage()).getDownloadUrl().addOnSuccessListener(
-                url->{
-                    Glide.with(imgBarber).load(url).into(imgBarber);
-                }
-        );
+        if(!barber.getUrlImage().equals("")){
+            FirebaseStorage.getInstance().getReference().child("barbers").child(barber.getUrlImage()).getDownloadUrl().addOnSuccessListener(
+                    url->{
+                        Glide.with(imgBarber).load(url).into(imgBarber);
+                    }
+            );
+        }
         FirebaseFirestore.getInstance().collection("clients").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(
                 document -> {
                     client = document.toObject(Client.class);
