@@ -22,7 +22,6 @@ public class ProfileFragmentClient extends Fragment {
 
     private Button exitBtn;
     private Client client;
-    private Barbershop barbershop;
     private TextView nameTV, emailTV;
 
     public ProfileFragmentClient() {
@@ -31,9 +30,6 @@ public class ProfileFragmentClient extends Fragment {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-    public void setBarbershop(Barbershop barbershop) {
-        this.barbershop = barbershop;
     }
 
     public static ProfileFragmentClient newInstance() {

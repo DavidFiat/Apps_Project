@@ -97,7 +97,7 @@ public class LoginBarbershop extends AppCompatActivity  {
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnSuccessListener(
                 task->{
                     addClientInFireBase();
-                    Intent intent = new Intent(this, ClientActivity.class);
+                    Intent intent = new Intent(this, BarbershopActivity.class);
                     startActivity(intent);
                 }
         ).addOnFailureListener(

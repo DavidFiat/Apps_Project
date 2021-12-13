@@ -16,6 +16,7 @@ import com.example.apps_project.adapters.BarbersAdapter;
 import com.example.apps_project.adapters.BarbershopsAdapter;
 import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Barbershop;
+import com.example.apps_project.model.Client;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -24,9 +25,14 @@ public class BarbersFragment extends Fragment implements  BarbershopsAdapter.OnL
     private RecyclerView barbersRecycler;
     private LinearLayoutManager manager;
     private BarbersAdapter barbersAdapter;
+    private Barbershop barbershop;
 
     public BarbersFragment() {
         barbersAdapter = new BarbersAdapter();
+    }
+
+    public void setBarbershop(Barbershop barbershop) {
+        this.barbershop = barbershop;
     }
 
     public static BarbersFragment newInstance() {
@@ -52,14 +58,14 @@ public class BarbersFragment extends Fragment implements  BarbershopsAdapter.OnL
     }
 
     public void getBarbers() {
-        FirebaseFirestore.getInstance().collection("barbers").get().addOnCompleteListener(
-                task ->{
-                    barbersAdapter.clear();
-                    for(DocumentSnapshot doc : task.getResult()){
-                        Barber barber = doc.toObject(Barber.class);
-                        barbersAdapter.addBarbers(barber);
-                    }
+       FirebaseFirestore.getInstance().collection("barbershops").document(barbershop.getId()).collection("barbers").get().addOnCompleteListener(
+            task -> {
+                barbersAdapter.clear();
+                for (DocumentSnapshot doc : task.getResult()) {
+                    Barber barber = doc.toObject(Barber.class);
+                    barbersAdapter.addBarbers(barber);
                 }
+            }
         );
     }
 

@@ -121,6 +121,7 @@ public class LoginBarber extends AppCompatActivity {
                             FirebaseUser fbuser = FirebaseAuth.getInstance().getCurrentUser();
                             Intent intent = new Intent(this, BarberActivity.class);
                             startActivity(intent);
+
                         }
                 ).addOnFailureListener(
                 error->Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show()
