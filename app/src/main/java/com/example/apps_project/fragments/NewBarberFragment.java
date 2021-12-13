@@ -84,12 +84,6 @@ public class NewBarberFragment extends Fragment {
                                 }
                         );
 
-                        //Preguntarle al profe si esto sirve - para guardar un barbero en una barbería
-                        /*FirebaseFirestore.getInstance().collection("barbershops").document(fbUser.getUid()).collection("barbers").document((fbUser.getUid())).set(barber).addOnSuccessListener(
-                                firetask->{
-                                    finish();
-                                }
-                        );*/
 
                     }
             ).addOnFailureListener(
