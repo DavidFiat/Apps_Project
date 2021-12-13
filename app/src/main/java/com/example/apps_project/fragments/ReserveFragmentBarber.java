@@ -13,6 +13,7 @@ import com.example.apps_project.R;
 import com.example.apps_project.adapters.ReservesAdapter;
 import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Barber;
+import com.example.apps_project.model.Barbershop;
 import com.example.apps_project.model.Reserve;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,6 +24,7 @@ public class ReserveFragmentBarber extends Fragment {
     private LinearLayoutManager managerBarber;
     private ReservesAdapter adapterBarber;
     private Barber barber;
+    private Barbershop barbershop;
 
     public ReserveFragmentBarber() {
         adapterBarber = new ReservesAdapter();
@@ -30,6 +32,9 @@ public class ReserveFragmentBarber extends Fragment {
 
     public void setBarber(Barber barber) {
         this.barber = barber;
+    }
+    public void setBarbershop(Barbershop barbershop) {
+        this.barbershop = barbershop;
     }
 
     public static ReserveFragmentBarber newInstance() {
@@ -44,7 +49,11 @@ public class ReserveFragmentBarber extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reserve_barber, container, false);
-
+        FirebaseFirestore.getInstance().collection("barbershops").document(barber.getBarberShopId()).get().addOnSuccessListener(
+                document -> {
+                    barbershop = document.toObject(Barbershop.class);
+                }
+        );
         reservesRecyclerBarber = view.findViewById(R.id.reservesRecyclerBarber);
         managerBarber = new LinearLayoutManager(view.getContext());
         reservesRecyclerBarber.setLayoutManager(managerBarber);
@@ -65,5 +74,6 @@ public class ReserveFragmentBarber extends Fragment {
                 }
         );
     }
+
 
 }

@@ -77,6 +77,7 @@ public class NewBarberFragment extends Fragment {
                         Barber barber = new Barber(fbUser.getUid(), name, "0", email, "", barbershop.getId());
                         FirebaseFirestore.getInstance().collection("users").document(fbUser.getUid()).set(user);
                         //Estamos dudando de este, por eso le vamos a preguntar al profe por el de abajo
+                        FirebaseFirestore.getInstance().collection("barbershops").document(barber.getBarberShopId()).collection("barbers").document(barber.getId()).set(barber);
                         FirebaseFirestore.getInstance().collection("barbers").document(fbUser.getUid()).set(barber).addOnSuccessListener(
                                 firetask->{
                                     getActivity().finish();
