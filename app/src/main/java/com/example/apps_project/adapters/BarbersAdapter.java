@@ -45,7 +45,8 @@ public class BarbersAdapter extends  RecyclerView.Adapter<BarbersView>{
         skeleton.setBarber(barber);
         skeleton.getNameTV().setText(barber.getName());
         skeleton.getRateTV().setText(barber.getRate());
-        if(barber.getUrlImage()!= null && !barber.getUrlImage().equals("")){
+
+        if(barber.getUrlImage() != null && !barber.getUrlImage().equals("")){
             FirebaseStorage.getInstance().getReference().child("barbers").child(barber.getUrlImage()).getDownloadUrl().addOnSuccessListener(
                     url->{
                         Glide.with(skeleton.getImageBarber()).load(url).into(skeleton.getImageBarber());

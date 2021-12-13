@@ -9,6 +9,8 @@ public class Barber implements Serializable {
     private String rate;
     private String email;
     private String urlImage;
+    private String barberShopId;
+
 
 
     public Barber() {
@@ -56,7 +58,20 @@ public class Barber implements Serializable {
         this.urlImage = urlImage;
     }
 
+    public String getBarberShopId() {
+        return barberShopId;
+    }
+
+    public void setBarberShopId(String barberShopId) {
+        this.barberShopId = barberShopId;
+    }
 
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.apps_project.R;
 import com.example.apps_project.activities.BarbersActivity;
 import com.example.apps_project.adapters.BarbershopsAdapter;
+import com.example.apps_project.model.Barber;
 import com.example.apps_project.model.Barbershop;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,14 +26,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class BarbershopsFragment extends Fragment implements BarbershopsAdapter.OnListBarbers {
 
-
     private RecyclerView barbershopsRecycler;
     private LinearLayoutManager manager;
     private BarbershopsAdapter adapter;
+    private Barber barber;
 
     public BarbershopsFragment() {
         adapter = new BarbershopsAdapter();
     }
+    public void setBarber(Barber barber) {
+        this.barber = barber;
+    }
+
 
     public static BarbershopsFragment newInstance() {
         BarbershopsFragment fragment = new BarbershopsFragment();
@@ -68,6 +73,7 @@ public class BarbershopsFragment extends Fragment implements BarbershopsAdapter.
                 }
         );
     }
+
 
     @Override
     public void onListBarbers(Barbershop barbershop) {
